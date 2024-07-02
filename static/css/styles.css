@@ -1,0 +1,117 @@
+/* static/css/styles.css */
+
+body { 
+    font-family: Arial, sans-serif; 
+    line-height: 1.6; 
+    margin: 0; 
+    padding: 0; 
+    background-color: #f0f0f0;
+}
+
+nav {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.container { 
+    max-width: 800px; 
+    margin: 20px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 { 
+    text-align: center; 
+    color: #333; 
+}
+
+form { 
+    background: #f9f9f9; 
+    padding: 20px; 
+    border-radius: 5px; 
+}
+
+label { 
+    display: block; 
+    margin-bottom: 5px; 
+    font-weight: bold;
+}
+
+input[type="text"], 
+input[type="number"], 
+select, 
+textarea {
+    width: 100%; 
+    padding: 8px; 
+    margin-bottom: 15px; 
+    border: 1px solid #ddd; 
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] { 
+    display: block; 
+    width: 100%; 
+    padding: 10px; 
+    background: #4CAF50; 
+    color: #fff; 
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 16px;
+}
+
+input[type="submit"]:hover { 
+    background: #45a049; 
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+
+    nav ul {
+        margin-top: 10px;
+    }
+
+    nav ul li {
+        margin-left: 0;
+        margin-right: 20px;
+    }
+}

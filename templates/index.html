@@ -1,0 +1,75 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Patient Questionnaire</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" class="logo-img">
+        </div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Breast Cancer Patient Questionnaire</h1>
+        <form id="patientForm" method="POST">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="stage">Cancer Stage:</label>
+            <select id="stage" name="stage" required>
+                <option value="">Select Stage</option>
+                <option value="Stage 0">Stage 0</option>
+                <option value="Stage I">Stage I</option>
+                <option value="Stage II">Stage II</option>
+                <option value="Stage III">Stage III</option>
+                <option value="Stage IV">Stage IV</option>
+            </select>
+
+            <label for="previous_treatments">Previous Treatments (if any):</label>
+            <textarea id="previous_treatments" name="previous_treatments" rows="3"></textarea>
+
+            <label for="preferred_language">Preferred Language:</label>
+            <input type="text" id="preferred_language" name="preferred_language">
+
+            <label for="location">Location (City, State):</label>
+            <input type="text" id="location" name="location" required>
+
+            <!-- New questions -->
+            <label for="family_history">Family History of Breast Cancer:</label>
+            <select id="family_history" name="family_history" required>
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                <option value="Unknown">Unknown</option>
+            </select>
+
+            <label for="genetic_testing">Have you had genetic testing?</label>
+            <select id="genetic_testing" name="genetic_testing" required>
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                <option value="Unsure">Unsure</option>
+            </select>
+
+            <label for="additional_concerns">Any additional concerns or preferences:</label>
+            <textarea id="additional_concerns" name="additional_concerns" rows="3"></textarea>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
