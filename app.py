@@ -22,6 +22,10 @@ class Patient(db.Model):
     family_history = db.Column(db.String(50))
     genetic_testing = db.Column(db.String(50))
     additional_concerns = db.Column(db.Text)
+    religiosity = db.Column(db.String(50))
+    immigration_status = db.Column(db.String(50))
+    social_support = db.Column(db.String(50))
+    doctor_preferences = db.Column(db.String(100))
 
 # Route for the main page
 @app.route('/', methods=['GET', 'POST'])
@@ -29,15 +33,19 @@ def index():
     if request.method == 'POST':
         # Process form submission
         new_patient = Patient(
-            name=request.form['name'],
-            age=request.form['age'],
-            stage=request.form['stage'],
-            previous_treatments=request.form['previous_treatments'],
-            preferred_language=request.form['preferred_language'],
-            location=request.form['location'],
-            family_history=request.form['family_history'],
-            genetic_testing=request.form['genetic_testing'],
-            additional_concerns=request.form['additional_concerns']
+        name=request.form['name'],
+        age=request.form['age'],
+        stage=request.form['stage'],
+        previous_treatments=request.form['previous_treatments'],
+        preferred_language=request.form['preferred_language'],
+        location=request.form['location'],
+        family_history=request.form['family_history'],
+        genetic_testing=request.form['genetic_testing'],
+        additional_concerns=request.form['additional_concerns'],
+        religiosity=request.form['religiosity'],
+        immigration_status=request.form['immigration_status'],
+        social_support=request.form['social_support'],
+        doctor_preferences=request.form['doctor_preferences']
         )
         db.session.add(new_patient)
         db.session.commit()
@@ -51,6 +59,4 @@ def thank_you():
 
 # Run the app
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True)
+    app.run(debug=False, host='0.0.0.0')

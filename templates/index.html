@@ -64,6 +64,46 @@
                 <option value="Unsure">Unsure</option>
             </select>
 
+            <section id="optional-questions">
+                <h2>Optional Questions</h2>
+                <label for="religiosity"> What is you religion></label>
+                <select id="religiosity" name="religiosity">
+                    <option value="">Select</option>
+                    <option value="Catholic">Catholic</option>
+                    <option value="Jewish">Jewish</option>
+                    <option value="Muslim">Muslim</option>
+                    <option value="Protestant">Protestant</option>
+                    <option value="Other">Other</option>
+                    <option value="Not Important">Not Important</option>
+                </select>
+                <label for="immigration_status">immigration_status:</label>
+                <select id="immigration_status"name="immigration_status">
+                    <option value="">Select</option>
+                    <option value="Citizen">Citizen</option>
+                    <optiont value="Non-citizen">Non-citizen</optiont>
+                    <option value="Resident">Resident</option>
+                    <option value="Other">Other</option>
+                </select>
+                <label for="social_support">Do you need social support?</label>
+                <input type="radio" id="social_support_yes" name="social_support" value="Yes">
+                <label for="social_support_yes">Yes</label>
+                <input type="radio" id="social_support_no" name="social_support" value="No">
+                <label for="social_support_no">No</label>
+
+                <label for="doctor_preferences">Are you looking for any specific qualities in your doctor?</label>
+                <select id="doctor_preferences" name="doctor_preferences">
+                    <option value="">Select</option>
+                    <option value="Patience">Patience</option>
+                    <option value="Time with Patient">Time with Patient</option>
+                    <option value="Personality and Bedside Manner">Personality and Bedside Manner</option>
+                    <option value="Clear Communication">Clear Communication</option>
+                    <option value="Other">Other</option>
+                    <option value="Not Important">Not Important</option>
+                </select>
+
+            
+            </section>
+
             <label for="additional_concerns">Any additional concerns or preferences:</label>
             <textarea id="additional_concerns" name="additional_concerns" rows="3"></textarea>
 
