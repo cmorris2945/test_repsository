@@ -23,10 +23,10 @@
         <h1>Breast Cancer Patient Questionnaire</h1>
         <form id="patientForm" method="POST">
             <label for="name">Full Name:</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
 
             <label for="age">Age:</label>
-            <input type="number" id="age" name="age" required>
+            <input type="number" id="age" name="age" placeholder="Enter your age" required>
 
             <label for="stage">Cancer Stage:</label>
             <select id="stage" name="stage" required>
@@ -39,13 +39,13 @@
             </select>
 
             <label for="previous_treatments">Previous Treatments (if any):</label>
-            <textarea id="previous_treatments" name="previous_treatments" rows="3"></textarea>
+            <textarea id="previous_treatments" name="previous_treatments" rows="3" placeholder="Describe your previous treatments"></textarea>
 
             <label for="preferred_language">Preferred Language:</label>
-            <input type="text" id="preferred_language" name="preferred_language">
+            <input type="text" id="preferred_language" name="preferred_language" placeholder="Enter your preferred language">
 
             <label for="location">Location (City, State):</label>
-            <input type="text" id="location" name="location" required>
+            <input type="text" id="location" name="location" placeholder="Enter your location" required>
 
             <!-- New questions -->
             <label for="family_history">Family History of Breast Cancer:</label>
@@ -64,43 +64,48 @@
                 <option value="Unsure">Unsure</option>
             </select>
 
-            <section id="optional-questions">
-                <h2>Optional Questions</h2>
-                <label for="religiosity"> What is you religion></label>
-                <select id="religiosity" name="religiosity">
-                    <option value="">Select</option>
-                    <option value="Catholic">Catholic</option>
-                    <option value="Jewish">Jewish</option>
-                    <option value="Muslim">Muslim</option>
-                    <option value="Protestant">Protestant</option>
-                    <option value="Other">Other</option>
-                   
-                </select>
-                <label for="immigration_status">immigration_status:</label>
-                <select id="immigration_status"name="immigration_status">
-                    <option value="">Select</option>
-                    <option value="Citizen">Citizen</option>
-                    <optiont value="Non-citizen">Non-citizen</optiont>
-                    <option value="Resident">Resident</option>
-                    <option value="Other">Other</option>
-                </select>
-                <label for="social_support">Do you need social support?</label>
+            <label>Do you need social support?</label>
+            <div>
                 <input type="radio" id="social_support_yes" name="social_support" value="Yes">
                 <label for="social_support_yes">Yes</label>
                 <input type="radio" id="social_support_no" name="social_support" value="No">
                 <label for="social_support_no">No</label>
+            </div>
 
-                <label for="doctor_preferences">Are you looking for any specific qualities in your doctor?</label>
-                <select id="doctor_preferences" name="doctor_preferences">
+            <section id="optional-questions">
+                <h2>Optional Questions</h2>
+                
+                <label for="religion">What is your religion?</label>
+                <select id="religion" name="religion">
                     <option value="">Select</option>
-                    <option value="Patience">Patience</option>
-                    <option value="Time with Patient">Time with Patient</option>
-                    <option value="Personality and Bedside Manner">Personality and Bedside Manner</option>
-                    <option value="Clear Communication">Clear Communication</option>
+                    <option value="Catholic">Catholic</option>
+                    <option value="Protestant">Protestant</option>
+                    <option value="Jewish">Jewish</option>
+                    <option value="Muslim">Muslim</option>
+                    <option value="Hindu">Hindu</option>
+                    <option value="Buddhist">Buddhist</option>
+                    <option value="Other">Other</option>
+                    <option value="None">None</option>
+                </select>
+
+                <label for="immigration_status">Immigration Status:</label>
+                <select id="immigration_status" name="immigration_status">
+                    <option value="">Select</option>
+                    <option value="Citizen">Citizen</option>
+                    <option value="Permanent Resident">Permanent Resident</option>
+                    <option value="Visa Holder">Visa Holder</option>
                     <option value="Other">Other</option>
                 </select>
 
-            
+                <label for="doctor_qualities">Are you looking for any specific qualities in your doctor?</label>
+                <select id="doctor_qualities" name="doctor_qualities">
+                    <option value="">Select</option>
+                    <option value="Experience">Experienced in breast cancer treatment</option>
+                    <option value="Communication">Excellent communication skills</option>
+                    <option value="Empathy">Empathetic and supportive</option>
+                    <option value="Research">Involved in latest research</option>
+                    <option value="Other">Other</option>
+                </select>
             </section>
 
             <label for="additional_concerns">Any additional concerns or preferences:</label>

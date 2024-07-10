@@ -6,57 +6,49 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(event) {
         let isValid = true;
 
-        // Validate name
-        const name = document.getElementById('name');
-        if (name.value.trim() === '') {
-            isValid = false;
-            alert('Please enter your name.');
-        }
+        // Validate required fields
+        const requiredFields = ['name', 'age', 'stage', 'location', 'family_history', 'genetic_testing', 'treatment_preference'];
+        requiredFields.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (!validateInput(field, `Please fill out the ${field.name.replace('_', ' ')} field.`)) {
+                isValid = false;
+            }
+        });
 
         // Validate age
         const age = document.getElementById('age');
-        if (age.value === '' || isNaN(age.value) || age.value < 0 || age.value > 120) {
+        if (!validateAge(age, 'Please enter a valid age between 0 and 120.')) {
             isValid = false;
-            alert('Please enter a valid age between 0 and 120.');
         }
 
-        // Validate stage
-        const stage = document.getElementById('stage');
-        if (stage.value === '') {
+        // Validate social support radio buttons
+        const socialSupport = document.querySelector('input[name="social_support"]:checked');
+        if (!socialSupport) {
+            alert('Please select whether you need social support.');
             isValid = false;
-            alert('Please select a cancer stage.');
-        }
-
-        // Validate location
-        const location = document.getElementById('location');
-        if (location.value.trim() === '') {
-            isValid = false;
-            alert('Please enter your location.');
-        }
-
-        // Validate family history
-        const familyHistory = document.getElementById('family_history');
-        if (familyHistory.value === '') {
-            isValid = false;
-            alert('Please select your family history of breast cancer.');
-        }
-
-        // Validate genetic testing
-        const geneticTesting = document.getElementById('genetic_testing');
-        if (geneticTesting.value === '') {
-            isValid = false;
-            alert('Please indicate if you have had genetic testing.');
-        }
-
-        // Validate treatment preference
-        const treatmentPreference = document.getElementById('treatment_preference');
-        if (treatmentPreference.value === '') {
-            isValid = false;
-            alert('Please select your preferred treatment approach.');
         }
 
         if (!isValid) {
             event.preventDefault(); // Prevent form submission if validation fails
         }
     });
+
+    // Function to validate input fields
+    function validateInput(input, errorMessage) {
+        if (input.value.trim() === '') {
+            alert(errorMessage);
+            return false;
+        }
+        return true;
+    }
+
+    // Function to validate age input
+    function validateAge(input, errorMessage) {
+        const age = parseInt(input.value);
+        if (isNaN(age) || age < 0 || age > 120) {
+            alert(errorMessage);
+            return false;
+        }
+        return true;
+    }
 });
