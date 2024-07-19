@@ -36,6 +36,7 @@ def index():
             location=request.form['location'],
             family_history=request.form['family_history'],
             genetic_testing=request.form['genetic_testing'],
+            treatment_preference=request.form['treatment_preference'],
             social_support=request.form.get('social_support'),
             religion=request.form.get('religion'),
             immigration_status=request.form.get('immigration_status'),
