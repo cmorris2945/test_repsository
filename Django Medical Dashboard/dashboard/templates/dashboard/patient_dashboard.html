@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Patient Dashboard{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-4">Welcome, {{ user.username }}</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="bg-white p-4 rounded shadow">
+        <h2 class="text-xl font-semibold mb-2">Your Appointments</h2>
+        {% if appointments %}
+            {% for appointment in appointments %}
+                <div class="mb-2 p-2 border rounded">
+                    <p>{{ appointment.date_time|date:"F d, Y H:i" }} with Dr. {{ appointment.doctor.last_name }}</p>
+                    <p class="text-sm text-gray-600">{{ appointment.reason }}</p>
+                    <a href="{% url 'cancel_appointment' appointment.id %}" class="text-red-500 text-sm">Cancel</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No upcoming appointments.</p>
+        {% endif %}
+
+        <h3 class="text-lg font-semibold mt-4 mb-2">Schedule New Appointment</h3>
+        <form method="post" action="{% url 'create_appointment' %}">
+            {% csrf_token %}
+            {{ appointment_form|crispy }}
+            <button type="submit" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Schedule</button>
+        </form>
+    </div>
+
+    <div class="bg-white p-4 rounded shadow">
+        <h2 class="text-xl font-semibold mb-2">Recent Messages</h2>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="mb-2">
+                    <p><strong>{{ message.sender.username }}:</strong> {{ message.content|truncatechars:50 }}</p>
+                    <p class="text-xs text-gray-500">{{ message.timestamp|date:"F d, Y H:i" }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No recent messages.</p>
+        {% endif %}
+        <a href="{% url 'send_message' %}" class="mt-2 inline-block bg-green-500 text-white px-4 py-2 rounded">Send Message</a>
+        <a href="{% url 'view_messages' %}" class="mt-2 ml-2 inline-block bg-blue-500 text-white px-4 py-2 rounded">View All Messages</a>
+    </div>
+</div>
+{% endblock %}

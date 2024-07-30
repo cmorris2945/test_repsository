@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <nav class="bg-green-600 p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{% url 'home' %}" class="text-white text-2xl font-bold hover:text-green-200 transition duration-300">Medical Dashboard</a>
+            <div class="space-x-4">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'dashboard' %}" class="text-white hover:text-green-200 transition duration-300">Dashboard</a>
+                    <form action="{% url 'logout' %}" method="post" class="inline">
+                        {% csrf_token %}
+                        <button type="submit" class="text-white hover:text-green-200 transition duration-300">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="text-white hover:text-green-200 transition duration-300">Login</a>
+                    <a href="{% url 'doctor_register' %}" class="bg-white text-green-600 px-4 py-2 rounded hover:bg-green-100 transition duration-300">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow container mx-auto mt-8 px-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-green-600 text-white py-4 mt-8">
+        <div class="container mx-auto text-center">
+            © 2024 Medical Dashboard. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

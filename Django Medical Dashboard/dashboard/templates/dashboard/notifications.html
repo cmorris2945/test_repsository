@@ -1,0 +1,19 @@
+<!-- dashboard/templates/dashboard/notifications.html -->
+{% extends "base.html" %}
+
+{% block title %}Notifications{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">Notifications</h1>
+
+<div class="bg-white p-6 rounded-lg shadow-md">
+    {% for notification in notifications %}
+        <div class="mb-2 {% if not notification.is_read %}font-bold{% endif %}">
+            <p>{{ notification.message }}</p>
+            <p class="text-xs text-gray-500">{{ notification.created_at|date:"F d, Y H:i" }}</p>
+        </div>
+    {% empty %}
+        <p>No notifications.</p>
+    {% endfor %}
+</div>
+{% endblock %}

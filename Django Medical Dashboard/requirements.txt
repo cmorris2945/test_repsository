@@ -1,0 +1,47 @@
+# Django framework
+Django==5.0.2
+
+# For handling environment variables
+python-decouple==3.8
+
+# For improved form rendering
+django-crispy-forms==2.1
+crispy-tailwind==0.5.0
+
+# For enhanced user model
+django-allauth==0.61.1
+
+# For API development (if needed in the future)
+djangorestframework==3.14.0
+
+# For handling cross-origin resource sharing (if needed)
+django-cors-headers==4.3.1
+
+# For database management (if using PostgreSQL)
+psycopg2-binary==2.9.9
+
+# For enhanced security
+django-csp==3.7
+
+# For managing static files
+whitenoise==6.6.0
+
+# For handling time zones
+pytz==2024.1
+
+# For running background tasks (if needed)
+celery==5.3.6
+
+# For pagination (if needed)
+django-pagination-bootstrap==2.4.6
+
+# For testing
+pytest==8.0.0
+pytest-django==4.8.0
+
+# For code linting and formatting
+flake8==7.0.0
+black==24.1.1
+
+# For creating fake data for testing
+Faker==22.6.0

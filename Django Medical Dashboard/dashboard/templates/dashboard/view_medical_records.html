@@ -1,0 +1,24 @@
+<!-- dashboard/templates/dashboard/view_medical_records.html -->
+{% extends "base.html" %}
+
+{% block title %}Medical Records{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">Medical Records</h1>
+
+<div class="bg-white p-6 rounded-lg shadow-md">
+    {% for record in records %}
+        <div class="mb-4 p-4 border rounded">
+            <p class="font-semibold">Date: {{ record.date }}</p>
+            <p>Doctor: Dr. {{ record.doctor.last_name }}</p>
+            <p>Diagnosis: {{ record.diagnosis }}</p>
+            <p>Treatment: {{ record.treatment }}</p>
+            {% if record.notes %}
+                <p>Notes: {{ record.notes }}</p>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>No medical records found.</p>
+    {% endfor %}
+</div>
+{% endblock %}

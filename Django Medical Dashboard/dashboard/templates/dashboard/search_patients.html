@@ -1,0 +1,26 @@
+<!-- dashboard/templates/dashboard/search_patients.html -->
+{% extends "base.html" %}
+
+{% block title %}Search Patients{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">Search Patients</h1>
+
+<form method="get" class="mb-6">
+    <input type="text" name="q" value="{{ query }}" placeholder="Search patients..." class="p-2 border rounded">
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
+</form>
+
+<div class="bg-white p-6 rounded-lg shadow-md">
+    {% for patient in patients %}
+        <div class="mb-4 p-4 border rounded">
+            <p class="font-semibold">{{ patient.get_full_name }}</p>
+            <p>Username: {{ patient.username }}</p>
+            <p>Email: {{ patient.email }}</p>
+            <a href="{% url 'create_medical_record' patient.id %}" class="text-blue-500 hover:underline">Create Medical Record</a>
+        </div>
+    {% empty %}
+        <p>No patients found.</p>
+    {% endfor %}
+</div>
+{% endblock %}

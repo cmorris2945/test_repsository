@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Cancel Appointment{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">Cancel Appointment</h1>
+
+<div class="bg-white p-6 rounded-lg shadow-md">
+    <p>Are you sure you want to cancel this appointment?</p>
+    <p><strong>Date:</strong> {{ appointment.date_time|date:"F d, Y H:i" }}</p>
+    <p><strong>Doctor:</strong> Dr. {{ appointment.doctor.last_name }}</p>
+    <p><strong>Reason:</strong> {{ appointment.reason }}</p>
+
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Confirm Cancellation</button>
+        <a href="{% url 'dashboard' %}" class="ml-4 bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">Go Back</a>
+    </form>
+</div>
+{% endblock %}

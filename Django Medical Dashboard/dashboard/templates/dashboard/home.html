@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Welcome to Medical Dashboard{% endblock %}
+{% block content %}
+<div class="flex flex-col items-center">
+    <!-- Hero Section -->
+    <div class="w-full bg-gradient-to-r from-green-400 to-blue-500 text-white py-20">
+        <div class="container mx-auto text-center px-4">
+            <h1 class="text-5xl font-bold mb-4">Welcome to Medical Dashboard</h1>
+            <p class="text-xl mb-8">Connecting patients and doctors for better healthcare</p>
+            <div class="space-x-4">
+                <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+                <a href="{% url 'login' %}" class="btn btn-primary">Doctor Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="container mx-auto mt-16 px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Why Choose Us</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <!-- Feature cards here (as in the previous version) -->
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div class="card">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <h3 class="text-xl font-semibold mb-2 text-gray-800">Easy Appointment Booking</h3>
+            <p class="text-gray-600">Schedule appointments with your preferred doctors at your convenience.</p>
+        </div>
+        <div class="card">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            <h3 class="text-xl font-semibold mb-2 text-gray-800">Secure Medical Records</h3>
+            <p class="text-gray-600">Access and manage your medical records securely from anywhere.</p>
+        </div>
+        <div class="card">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+            </svg>
+            <h3 class="text-xl font-semibold mb-2 text-gray-800">Direct Communication</h3>
+            <p class="text-gray-600">Communicate directly with your healthcare providers through our secure platform.</p>
+        </div>
+    </div>
+
+    <!-- Testimonial Section -->
+    <div class="w-full bg-gray-100 mt-16 py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">What Our Users Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <p class="text-gray-600 mb-4">"This platform has revolutionized how I manage my healthcare. Booking appointments and accessing my records has never been easier!"</p>
+                    <p class="font-semibold text-green-600">- Sarah J., Patient</p>
+                </div>
+                <div class="card">
+                    <p class="text-gray-600 mb-4">"As a doctor, this dashboard has significantly improved my workflow. I can easily communicate with patients and manage my schedule efficiently."</p>
+                    <p class="font-semibold text-green-600">- Dr. Michael R., Cardiologist</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="w-full bg-gradient-to-r from-green-500 to-blue-600 mt-16 py-16 text-white">
+        <div class="container mx-auto text-center px-4">
+            <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
+            <p class="text-xl mb-8">Join thousands of patients and doctors already using our platform.</p>
+            <a href="{% url 'register' %}" class="btn btn-secondary">Create an Account</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
