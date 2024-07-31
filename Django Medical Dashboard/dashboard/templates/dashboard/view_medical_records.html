@@ -1,24 +1,20 @@
-<!-- dashboard/templates/dashboard/view_medical_records.html -->
 {% extends "base.html" %}
 
-{% block title %}Medical Records{% endblock %}
-
 {% block content %}
-<h1 class="text-3xl font-bold mb-6">Medical Records</h1>
-
-<div class="bg-white p-6 rounded-lg shadow-md">
-    {% for record in records %}
-        <div class="mb-4 p-4 border rounded">
-            <p class="font-semibold">Date: {{ record.date }}</p>
-            <p>Doctor: Dr. {{ record.doctor.last_name }}</p>
-            <p>Diagnosis: {{ record.diagnosis }}</p>
-            <p>Treatment: {{ record.treatment }}</p>
-            {% if record.notes %}
-                <p>Notes: {{ record.notes }}</p>
-            {% endif %}
-        </div>
-    {% empty %}
-        <p>No medical records found.</p>
-    {% endfor %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6 text-green-600">Medical Records</h1>
+    {% if records %}
+        {% for record in records %}
+            <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <p class="font-bold">Patient: {{ record.patient.get_full_name }}</p>
+                <p class="text-gray-700"><strong>Diagnosis:</strong> {{ record.diagnosis }}</p>
+                <p class="text-gray-700"><strong>Treatment:</strong> {{ record.treatment }}</p>
+                <p class="text-gray-700"><strong>Notes:</strong> {{ record.notes }}</p>
+                <p class="text-sm text-gray-600">Date: {{ record.date|date:"F d, Y" }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-gray-600">No medical records found.</p>
+    {% endif %}
 </div>
 {% endblock %}

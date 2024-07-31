@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6 text-green-600">All Messages</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <p class="font-bold">From: {{ message.sender.get_full_name }}</p>
+                <p class="text-gray-700">{{ message.content }}</p>
+                <p class="text-sm text-gray-600">{{ message.timestamp|date:"F d, Y H:i" }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-gray-600">No messages found.</p>
+    {% endif %}
+</div>
+{% endblock %}

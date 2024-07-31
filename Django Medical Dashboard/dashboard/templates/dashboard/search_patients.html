@@ -1,26 +1,27 @@
 <!-- dashboard/templates/dashboard/search_patients.html -->
 {% extends "base.html" %}
 
-{% block title %}Search Patients{% endblock %}
-
 {% block content %}
-<h1 class="text-3xl font-bold mb-6">Search Patients</h1>
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6 text-green-600">Search Patients</h1>
+    <form method="get" class="mb-8">
+        <input type="text" name="q" placeholder="Search by name or email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <button type="submit" class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Search
+        </button>
+    </form>
 
-<form method="get" class="mb-6">
-    <input type="text" name="q" value="{{ query }}" placeholder="Search patients..." class="p-2 border rounded">
-    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Search</button>
-</form>
-
-<div class="bg-white p-6 rounded-lg shadow-md">
-    {% for patient in patients %}
-        <div class="mb-4 p-4 border rounded">
-            <p class="font-semibold">{{ patient.get_full_name }}</p>
-            <p>Username: {{ patient.username }}</p>
-            <p>Email: {{ patient.email }}</p>
-            <a href="{% url 'create_medical_record' patient.id %}" class="text-blue-500 hover:underline">Create Medical Record</a>
-        </div>
-    {% empty %}
-        <p>No patients found.</p>
-    {% endfor %}
+    {% if patients %}
+        <h2 class="text-2xl font-bold mb-4">Search Results:</h2>
+        {% for patient in patients %}
+            <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <p class="font-bold">{{ patient.get_full_name }}</p>
+                <p class="text-gray-700">Email: {{ patient.email }}</p>
+                <a href="{% url 'create_medical_record' patient.id %}" class="text-green-500 hover:text-green-700">Create Medical Record</a>
+            </div>
+        {% endfor %}
+    {% elif search_performed %}
+        <p class="text-gray-600">No patients found matching your search.</p>
+    {% endif %}
 </div>
 {% endblock %}
