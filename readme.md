@@ -8,6 +8,7 @@ This Flask-based web application provides a questionnaire for breast cancer pati
 - Collects relevant medical history and treatment preferences
 - Stores patient data securely in a SQLite database
 - Responsive design for desktop and mobile devices
+- Chatbot interface 
 
 ## Prerequisites
 
