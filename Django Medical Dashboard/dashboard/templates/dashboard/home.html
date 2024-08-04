@@ -1,26 +1,36 @@
 {% extends "base.html" %}
-{% block title %}Welcome to Medical Dashboard{% endblock %}
-{% block content %}
+{% load static %}
 
+{% block content %}
 <div class="flex flex-col items-center">
-    <div class="w-full bg-gradient-to-r from-green-400 to-blue-500 text-white py-20">
-        <div class="container mx-auto text-center px-4">
-            <h1 class="text-5xl font-bold mb-4">Welcome to Medical Dashboard</h1>
-            <p class="text-xl mb-8">Using AI to Match Patients with Doctors and Services</p>
-            <div class="space-x-4">
-                <a href="{% url 'survivor_login' %}" class="btn btn-primary">Survivor Login</a>
-                <a href="{% url 'doctor_login' %}" class="btn btn-primary">Doctor Login</a>
+    <div class="hero-section w-full px-4 py-8 md:py-12">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="text-center md:text-left md:w-1/2 mb-8 md:mb-0">
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">Welcome to Medical Dashboard</h1>
+                <p class="text-lg md:text-xl mb-6 text-white opacity-90">Using AI to Match Patients with Doctors and Services</p>
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="{% url 'survivor_login' %}" class="btn btn-primary">
+                        <i class="fas fa-user-shield mr-2"></i>Survivor Login
+                    </a>
+                    <a href="{% url 'doctor_login' %}" class="btn btn-primary">
+                        <i class="fas fa-user-md mr-2"></i>Doctor Login
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <img src="{% static 'images/medical-illustration.svg' %}" alt="Medical Illustration" class="mx-auto max-w-sm w-full">
             </div>
         </div>
     </div>
 
-    <div class="w-full bg-gradient-to-r from-green-500 to-blue-600 mt-16 py-16 text-white">
-        <div class="container mx-auto text-center px-4">
-            <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-            <p class="mb-8">Experience our AI-powered healthcare matching system.</p>
-            <a href="{% url 'register' %}" class="btn btn-secondary">Create an Account</a>
+    <div class="cta-section w-full bg-white px-4 py-8">
+        <div class="container mx-auto text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4 text-green-600">Ready to Get Started?</h2>
+            <p class="text-lg mb-6">Experience our AI-powered healthcare matching system.</p>
+            <a href="{% url 'register' %}" class="btn btn-secondary">
+                <i class="fas fa-user-plus mr-2"></i>Create an Account
+            </a>
         </div>
     </div>
 </div>
-
 {% endblock %}

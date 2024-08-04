@@ -1,50 +1,54 @@
 {% extends "base.html" %}
 {% block content %}
+
 <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-6 text-green-600">Welcome, Dr. {{ user.last_name }}</h1>
+    <h1 class="text-2xl md:text-3xl font-bold mb-6 text-green-600">Welcome, Dr. {{ user.last_name }}</h1>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-xl font-semibold mb-4 text-green-600">Upcoming Appointments</h2>
+        <div class="bg-white p-4 md:p-6 rounded-lg shadow-md">
+            <h2 class="text-lg md:text-xl font-semibold mb-4 text-green-600">Upcoming Appointments</h2>
             {% if appointments %}
-                {% for appointment in appointments %}
-                    <div class="mb-3 p-3 border rounded hover:bg-green-50 transition duration-300">
-                        <p class="font-semibold">{{ appointment.date_time|date:"F d, Y H:i" }}</p>
-                        <p>Patient: {{ appointment.patient.get_full_name }}</p>
-                        <p class="text-sm text-gray-600">{{ appointment.reason }}</p>
-                    </div>
-                {% endfor %}
+                <div class="space-y-3">
+                    {% for appointment in appointments %}
+                        <div class="p-3 border rounded hover:bg-green-50 transition duration-300">
+                            <p class="font-semibold">{{ appointment.date_time|date:"F d, Y H:i" }}</p>
+                            <p>Patient: {{ appointment.patient.get_full_name }}</p>
+                            <p class="text-sm text-gray-600">{{ appointment.reason }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
             {% else %}
                 <p class="text-gray-600">No upcoming appointments.</p>
             {% endif %}
             <a href="{% url 'create_appointment' %}" class="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300">Schedule Appointment</a>
         </div>
 
-        <div class="bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-xl font-semibold mb-4 text-green-600">Recent Messages</h2>
+        <div class="bg-white p-4 md:p-6 rounded-lg shadow-md">
+            <h2 class="text-lg md:text-xl font-semibold mb-4 text-green-600">Recent Messages</h2>
             {% if recent_messages %}
-                {% for message in recent_messages %}
-                    <div class="mb-3 p-3 border rounded hover:bg-green-50 transition duration-300">
-                        <p><strong>{{ message.sender.get_full_name }}:</strong> {{ message.content|truncatechars:50 }}</p>
-                        <p class="text-sm text-gray-500">{{ message.timestamp|date:"F d, Y H:i" }}</p>
-                    </div>
-                {% endfor %}
+                <div class="space-y-3">
+                    {% for message in recent_messages %}
+                        <div class="p-3 border rounded hover:bg-green-50 transition duration-300">
+                            <p><strong>{{ message.sender.get_full_name }}:</strong> {{ message.content|truncatechars:50 }}</p>
+                            <p class="text-sm text-gray-500">{{ message.timestamp|date:"F d, Y H:i" }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
             {% else %}
                 <p class="text-gray-600">No recent messages.</p>
             {% endif %}
             <a href="{% url 'view_messages' %}" class="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300">View All Messages</a>
         </div>
 
-        <div class="bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-xl font-semibold mb-4 text-green-600">Quick Actions</h2>
+        <div class="bg-white p-4 md:p-6 rounded-lg shadow-md">
+            <h2 class="text-lg md:text-xl font-semibold mb-4 text-green-600">Quick Actions</h2>
             <ul class="space-y-2">
-                <li><a href="{% url 'view_medical_records' %}" class="text-green-600 hover:text-green-800">View Medical Records</a></li>
-                <li><a href="{% url 'search_patients' %}" class="text-green-600 hover:text-green-800">Search Patients</a></li>
-                {% if user.is_staff %}
-                    <li><a href="{% url 'admin:index' %}" class="text-green-600 hover:text-green-800">Admin Panel</a></li>
-                {% endif %}
+                <li><a href="{% url 'view_medical_records' %}" class="text-green-600 hover:text-green-800 block py-2 px-3 rounded hover:bg-green-100 transition duration-300">View Medical Records</a></li>
+                <li><a href="{% url 'search_patients' %}" class="text-green-600 hover:text-green-800 block py-2 px-3 rounded hover:bg-green-100 transition duration-300">Search Patients</a></li>
+                <li><a href="{% url 'admin:index' %}" class="text-green-600 hover:text-green-800 block py-2 px-3 rounded hover:bg-green-100 transition duration-300">Admin Panel</a></li>
             </ul>
         </div>
     </div>
 </div>
+
 {% endblock %}

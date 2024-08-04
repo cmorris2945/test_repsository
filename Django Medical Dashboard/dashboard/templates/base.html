@@ -1,16 +1,19 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Dashboard</title>
+    <title>{% block title %}Medical Dashboard{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-col">
-    <nav class="bg-green-600 p-4 shadow-md">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="{% url 'home' %}" class="text-white text-2xl font-bold hover:text-green-200 transition duration-300">Medical Dashboard</a>
-            <div class="space-x-4">
+<body class="flex flex-col min-h-screen bg-gray-100">
+    <nav class="bg-green-600 p-4">
+        <div class="container mx-auto flex flex-wrap justify-between items-center">
+            <a href="{% url 'home' %}" class="text-white text-xl md:text-2xl font-bold hover:text-green-200 transition duration-300">Medical Dashboard</a>
+            <div class="flex items-center space-x-4 mt-4 md:mt-0">
                 {% if user.is_authenticated %}
                     <a href="{% url 'dashboard' %}" class="text-white hover:text-green-200 transition duration-300">Dashboard</a>
                     <form action="{% url 'logout' %}" method="post" class="inline">
@@ -36,3 +39,4 @@
     </footer>
 </body>
 </html>
+
