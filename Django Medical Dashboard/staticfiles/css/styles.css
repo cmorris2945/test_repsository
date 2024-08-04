@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+}
+
+.bg-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.btn {
+    @apply font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg;
+}
+
+.btn-primary {
+    @apply bg-white text-green-600 hover:bg-green-100;
+}
+
+.btn-secondary {
+    @apply bg-green-600 text-white hover:bg-green-700;
+}
+
+.text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500;
+}
+
+/* Hero Section Styles */
+.hero-section {
+    @apply w-full bg-gradient-to-br from-green-400 via-teal-500 to-blue-500 text-white py-20 relative overflow-hidden;
+}
+
+.hero-content {
+    @apply container mx-auto text-center px-4 relative z-10;
+}
+
+.hero-title {
+    @apply text-4xl md:text-5xl font-bold mb-4 leading-tight;
+}
+
+.hero-subtitle {
+    @apply text-xl mb-8;
+}
+
+.hero-buttons {
+    @apply space-x-4;
+}
+
+.hero-illustration {
+    @apply mt-12 flex justify-center;
+}
+
+.hero-illustration img {
+    @apply w-1/2 max-w-md;
+}
+
+/* CTA Section Styles */
+.cta-section {
+    @apply w-full bg-white py-16;
+}
+
+.cta-content {
+    @apply container mx-auto text-center px-4;
+}
+
+.cta-title {
+    @apply text-3xl font-bold mb-4 text-gray-800;
+}
+
+.cta-subtitle {
+    @apply text-xl mb-8 text-gray-600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .hero-title {
+        @apply text-3xl;
+    }
+
+    .hero-subtitle {
+        @apply text-lg;
+    }
+
+    .hero-buttons {
+        @apply flex flex-col space-y-4 space-x-0;
+    }
+
+    .hero-illustration img {
+        @apply w-3/4;
+    }
+}
