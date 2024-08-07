@@ -1,4 +1,3 @@
-<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breast Cancer Patient Questionnaire</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script>
+        function handleHelpChange() {
+            const helpSelect = document.getElementById('help_today');
+            const helpOptions = document.getElementById('help_options');
+            const secondOpinion = document.getElementById('second_opinion');
+            const startedTreatment = document.getElementById('started_treatment');
+            const additionalInfo = document.getElementById('additional_info');
+            const genderSelection = document.getElementById('gender_selection');
+            const ehrSync = document.getElementById('ehr_sync');
+            const confirmInfo = document.getElementById('confirm_info');
+
+            helpOptions.style.display = 'none';
+            secondOpinion.style.display = 'none';
+            startedTreatment.style.display = 'none';
+            additionalInfo.style.display = 'none';
+            genderSelection.style.display = 'none';
+            ehrSync.style.display = 'none';
+            confirmInfo.style.display = 'none';
+
+            if (helpSelect.value === 'Newly Diagnosed with Cancer') {
+                helpOptions.style.display = 'block';
+            }
+        }
+
+        function handleHelpOptionChange() {
+            const helpOption = document.querySelector('input[name="help_option"]:checked').value;
+            const secondOpinion = document.getElementById('second_opinion');
+
+            secondOpinion.style.display = 'none';
+
+            if (helpOption === 'Help with Diagnosis') {
+                secondOpinion.style.display = 'block';
+            }
+        }
+
+        function handleSecondOpinionChange() {
+            const secondOpinion = document.querySelector('input[name="second_opinion"]:checked').value;
+            const startedTreatment = document.getElementById('started_treatment');
+
+            startedTreatment.style.display = 'none';
+
+            if (secondOpinion === 'yes') {
+                startedTreatment.style.display = 'block';
+            }
+        }
+
+        function handleTreatmentChange() {
+            const startedTreatment = document.querySelector('input[name="started_treatment"]:checked').value;
+            const additionalInfo = document.getElementById('additional_info');
+            const genderSelection = document.getElementById('gender_selection');
+            const ehrSync = document.getElementById('ehr_sync');
+            const confirmInfo = document.getElementById('confirm_info');
+
+            additionalInfo.style.display = 'none';
+            genderSelection.style.display = 'none';
+            ehrSync.style.display = 'none';
+            confirmInfo.style.display = 'none';
+
+            if (startedTreatment === 'yes') {
+                additionalInfo.style.display = 'block';
+                genderSelection.style.display = 'block';
+            }
+        }
+
+        function handleGenderChange() {
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const ehrSync = document.getElementById('ehr_sync');
+            const confirmInfo = document.getElementById('confirm_info');
+
+            ehrSync.style.display = 'none';
+            confirmInfo.style.display = 'none';
+
+            if (gender === 'female') {
+                ehrSync.style.display = 'block';
+            }
+            confirmInfo.style.display = 'block';
+        }
+
+        function handleConsentChange() {
+            const consent = document.querySelector('input[name="consent"]:checked').value;
+            const consentQuestion = document.getElementById('help_today_section');
+            if (consent === 'yes') {
+                consentQuestion.style.display = 'block';
+            } else {
+                consentQuestion.style.display = 'none';
+            }
+        }
+
+        function handleConfirmInfoChange() {
+            const confirmInfo = document.querySelector('input[name="confirm_info"]:checked').value;
+            const socialSupportSection = document.getElementById('social_support_section');
+            if (confirmInfo === 'yes') {
+                socialSupportSection.style.display = 'block';
+            } else {
+                socialSupportSection.style.display = 'none';
+            }
+        }
+    </script>
 </head>
 <body>
     <nav>
@@ -22,6 +119,69 @@
     <div class="container">
         <h1>Breast Cancer Patient Questionnaire</h1>
         <form id="patientForm" method="POST">
+            <!-- Informed Consent Section -->
+            <label for="consent">Informed Consent to Telemedicine Consultation:</label>
+            <input type="radio" id="consent_yes" name="consent" value="yes" onclick="handleConsentChange()"> Yes
+            <input type="radio" id="consent_no" name="consent" value="no" onclick="handleConsentChange()"> No
+
+            <!-- Help Today Section -->
+            <div id="help_today_section" style="display:none;">
+                <label for="help_today">How can I help you today?</label>
+                <select id="help_today" name="help_today" onchange="handleHelpChange()">
+                    <option value="">Select</option>
+                    <option value="Assess Risk of Cancer">Assess Risk of Cancer</option>
+                    <option value="Newly Diagnosed with Cancer">Newly Diagnosed with Cancer</option>
+                    <option value="Advanced Cancer with Metastasis or Complications">Advanced Cancer with Metastasis or Complications</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <div id="help_options" style="display:none;">
+                    <p>I know this is a difficult time for you. Let me help you more if I can.</p>
+                    <label for="help_option">Select an option:</label>
+                    <input type="radio" id="help_diagnosis" name="help_option" value="Help with Diagnosis" onclick="handleHelpOptionChange()"> Help with Diagnosis
+                    <input type="radio" id="help_info" name="help_option" value="Read educational info about diagnosis" onclick="handleHelpOptionChange()"> Read educational info about diagnosis
+                    <input type="radio" id="help_social_worker" name="help_option" value="Talk to a Social Worker" onclick="handleHelpOptionChange()"> Talk to a Social Worker
+                    <input type="radio" id="help_other" name="help_option" value="Other" onclick="handleHelpOptionChange()"> Other
+                </div>
+
+                <div id="second_opinion" style="display:none;">
+                    <label for="second_opinion">Do you need help finding a second opinion?</label>
+                    <input type="radio" id="second_opinion_yes" name="second_opinion" value="yes" onclick="handleSecondOpinionChange()"> Yes
+                    <input type="radio" id="second_opinion_no" name="second_opinion" value="no" onclick="handleSecondOpinionChange()"> No
+                </div>
+
+                <div id="started_treatment" style="display:none;">
+                    <label for="started_treatment">Have you started treatment?</label>
+                    <input type="radio" id="started_treatment_yes" name="started_treatment" value="yes" onclick="handleTreatmentChange()"> Yes
+                    <input type="radio" id="started_treatment_no" name="started_treatment" value="no" onclick="handleTreatmentChange()"> No
+                </div>
+
+                <div id="additional_info" style="display:none;">
+                    <label for="zip_code">What is your zip code?</label>
+                    <input type="text" id="zip_code" name="zip_code">
+
+                    <label for="insurance_name">What is your insurance name?</label>
+                    <input type="text" id="insurance_name" name="insurance_name">
+                </div>
+
+                <div id="gender_selection" style="display:none;">
+                    <label for="gender">Are you a biological male or female?</label>
+                    <input type="radio" id="gender_male" name="gender" value="male" onclick="handleGenderChange()"> Male
+                    <input type="radio" id="gender_female" name="gender" value="female" onclick="handleGenderChange()"> Female
+                </div>
+
+                <div id="ehr_sync" style="display:none;">
+                    <p>Synching EHR records...</p>
+                </div>
+
+                <div id="confirm_info" style="display:none;">
+                    <label for="confirm_info">Is this information correct?</label>
+                    <input type="radio" id="confirm_info_yes" name="confirm_info" value="yes" onclick="handleConfirmInfoChange()"> Yes
+                    <input type="radio" id="confirm_info_no" name="confirm_info" value="no" onclick="handleConfirmInfoChange()"> No
+                </div>
+            </div>
+
+            <!-- Other Questions -->
             <label for="name">Full Name:</label>
             <input type="text" id="name" name="name" required>
 
@@ -47,7 +207,6 @@
             <label for="location">Location (City, State):</label>
             <input type="text" id="location" name="location" required>
 
-            <!-- New questions -->
             <label for="family_history">Family History of Breast Cancer:</label>
             <select id="family_history" name="family_history" required>
                 <option value="">Select</option>
@@ -64,47 +223,103 @@
                 <option value="Unsure">Unsure</option>
             </select>
 
-            <section id="optional-questions">
-                <h2>Optional Questions</h2>
-                <label for="religiosity"> What is you religion></label>
-                <select id="religiosity" name="religiosity">
-                    <option value="">Select</option>
-                    <option value="Catholic">Catholic</option>
-                    <option value="Jewish">Jewish</option>
-                    <option value="Muslim">Muslim</option>
-                    <option value="Protestant">Protestant</option>
-                    <option value="Other">Other</option>
-                   
-                </select>
-                <label for="immigration_status">immigration_status:</label>
-                <select id="immigration_status"name="immigration_status">
-                    <option value="">Select</option>
-                    <option value="Citizen">Citizen</option>
-                    <optiont value="Non-citizen">Non-citizen</optiont>
-                    <option value="Resident">Resident</option>
-                    <option value="Other">Other</option>
-                </select>
-                <label for="social_support">Do you need social support?</label>
-                <input type="radio" id="social_support_yes" name="social_support" value="Yes">
-                <label for="social_support_yes">Yes</label>
-                <input type="radio" id="social_support_no" name="social_support" value="No">
-                <label for="social_support_no">No</label>
-
-                <label for="doctor_preferences">Are you looking for any specific qualities in your doctor?</label>
-                <select id="doctor_preferences" name="doctor_preferences">
-                    <option value="">Select</option>
-                    <option value="Patience">Patience</option>
-                    <option value="Time with Patient">Time with Patient</option>
-                    <option value="Personality and Bedside Manner">Personality and Bedside Manner</option>
-                    <option value="Clear Communication">Clear Communication</option>
-                    <option value="Other">Other</option>
-                </select>
-
-            
-            </section>
+            <label for="qualities">Specific qualities you prefer in a doctor:</label>
+            <textarea id="qualities" name="qualities" rows="3"></textarea>
 
             <label for="additional_concerns">Any additional concerns or preferences:</label>
             <textarea id="additional_concerns" name="additional_concerns" rows="3"></textarea>
+
+            <label for="ethnicity">Ethnicity:</label>
+            <select id="ethnicity" name="ethnicity" required>
+                <option value="">Select</option>
+                <option value="American Indian or Alaskan Native">American Indian or Alaskan Native</option>
+                <option value="Asian">Asian</option>
+                <option value="Black or African American">Black or African American</option>
+                <option value="Hispanic or Latino">Hispanic or Latino</option>
+                <option value="Native Hawaiian or Other Pacific Islander">Native Hawaiian or Other Pacific Islander</option>
+                <option value="White">White</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <!-- Social Support Section -->
+            <div id="social_support_section" style="display:none;">
+                <h2>Social Support</h2>
+                <label for="social_support_status">What is your social support status?</label>
+                <select id="social_support_status" name="social_support_status">
+                    <option value="">Select</option>
+                    <option value="Need additional support">Need additional support</option>
+                    <option value="Adequate current support">Adequate current support</option>
+                    <option value="Don't have social support">Don't have social support</option>
+                    <option value="Not sure">Not sure</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+
+                <label for="physician_experience">Physician/Healthcare Oncologist Experience:</label>
+                <select id="physician_experience" name="physician_experience">
+                    <option value="">Select</option>
+                    <option value="1-5">1-5 years</option>
+                    <option value="5-10">5-10 years</option>
+                    <option value="10+">10+ years</option>
+                </select>
+
+                <label for="treatment_cases">Treatment of Similar Cases:</label>
+                <select id="treatment_cases" name="treatment_cases">
+                    <option value="">Select</option>
+                    <option value="1-10">1-10 cases</option>
+                    <option value="10-30">10-30 cases</option>
+                    <option value="30+">30+ cases</option>
+                </select>
+
+                <label for="patient_satisfaction">Patient Satisfaction Score:</label>
+                <select id="patient_satisfaction" name="patient_satisfaction">
+                    <option value="">Select</option>
+                    <option value="<2"><2</option>
+                    <option value="2-5">2-5</option>
+                    <option value="5-7">5-7</option>
+                    <option value="7-10">7-10</option>
+                </select>
+
+                <label for="appointment_wait_time">Appointment Wait Time (hrs):</label>
+                <select id="appointment_wait_time" name="appointment_wait_time">
+                    <option value="">Select</option>
+                    <option value="<1"><1</option>
+                    <option value="1-3">1-3</option>
+                    <option value=">3">>3</option>
+                </select>
+
+                <label for="proximity">Proximity (miles):</label>
+                <select id="proximity" name="proximity">
+                    <option value="">Select</option>
+                    <option value="<2"><2 miles</option>
+                    <option value="2-5">2-5 miles</option>
+                    <option value="5+">5+ miles</option>
+                </select>
+
+                <label for="treatment_approach">Treatment Approach:</label>
+                <select id="treatment_approach" name="treatment_approach">
+                    <option value="">Select</option>
+                    <option value="Standard medical care">Standard medical care</option>
+                    <option value="Conservative treatment approach">Conservative treatment approach</option>
+                    <option value="Newer treatment modalities">Newer treatment modalities</option>
+                    <option value="Clinical trials or experimental treatments">Clinical trials or experimental treatments</option>
+                    <option value="Complementary and alternative healing">Complementary and alternative healing</option>
+                    <option value="Integrative or holistic approach">Integrative or holistic approach</option>
+                    <option value="I want to know more">I want to know more</option>
+                </select>
+            </div>
+
+            <label for="schedule_appointment">Do you want me to call and schedule an appointment?</label>
+            <input type="radio" id="schedule_appointment_yes" name="schedule_appointment" value="yes"> Yes
+            <input type="radio" id="schedule_appointment_no" name="schedule_appointment" value="no"> No
+
+            <label for="schedule_transportation">Schedule transportation?</label>
+            <input type="radio" id="schedule_transportation_yes" name="schedule_transportation" value="yes"> Yes
+            <input type="radio" id="schedule_transportation_no" name="schedule_transportation" value="no"> No
+            <input type="radio" id="schedule_transportation_later" name="schedule_transportation" value="later"> Later
+
+            <div id="transportation_status" style="display:none;">
+                <p>Scheduling transportation...</p>
+            </div>
 
             <input type="submit" value="Submit">
         </form>
