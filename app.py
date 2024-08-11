@@ -8,7 +8,7 @@ import urllib
 app = Flask(__name__)
 
 # Configure Azure SQL Database connection
-server = 'drbotserver.database.windows.net'
+'''server = 'drbotserver.database.windows.net'
 database = 'drbothealthdb'
 username = 'drbot'
 password = 'TheFlash40'  # Actual password from the connection string
@@ -20,7 +20,8 @@ params = urllib.parse.quote_plus(
 )
 
 # Configure SQLAlchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mssql+pyodbc:///?odbc_connect={params}"
+app.config['SQLALCHEMY_DATABASE_URI'] = f"mssql+pyodbc:///?odbc_connect={params}"'''
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///patients.db'  ## I added this for testing locally.
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -47,6 +48,7 @@ class Patient(db.Model):
 def index():
     if request.method == 'POST':
         # Process form submission
+        patient_name = request.form['name']
         new_patient = Patient(
             name=request.form['name'],
             age=request.form['age'],
@@ -77,3 +79,28 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # Create tables if they don't exist
     app.run(debug=False, host='0.0.0.0')
+
+"""if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+        
+        # Insert test data directly
+        test_patient = Patient(
+            name='Kanupriya Agarwal',
+            age=30,
+            stage='Stage II',
+            previous_treatments='Chemotherapy',
+            preferred_language='English',
+            location='Test City, State',
+            family_history='Yes',
+            genetic_testing='Yes',
+            additional_concerns='None',
+            religiosity='None',
+            immigration_status='Citizen',
+            social_support='Adequate',
+            doctor_preferences='Compassionate'
+        )
+        db.session.add(test_patient)
+        db.session.commit()
+
+    app.run(debug=False, host='0.0.0.0')"""
