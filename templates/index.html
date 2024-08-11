@@ -5,104 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breast Cancer Patient Questionnaire</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <script>
-        function handleHelpChange() {
-            const helpSelect = document.getElementById('help_today');
-            const helpOptions = document.getElementById('help_options');
-            const secondOpinion = document.getElementById('second_opinion');
-            const startedTreatment = document.getElementById('started_treatment');
-            const additionalInfo = document.getElementById('additional_info');
-            const genderSelection = document.getElementById('gender_selection');
-            const ehrSync = document.getElementById('ehr_sync');
-            const confirmInfo = document.getElementById('confirm_info');
-
-            helpOptions.style.display = 'none';
-            secondOpinion.style.display = 'none';
-            startedTreatment.style.display = 'none';
-            additionalInfo.style.display = 'none';
-            genderSelection.style.display = 'none';
-            ehrSync.style.display = 'none';
-            confirmInfo.style.display = 'none';
-
-            if (helpSelect.value === 'Newly Diagnosed with Cancer') {
-                helpOptions.style.display = 'block';
-            }
-        }
-
-        function handleHelpOptionChange() {
-            const helpOption = document.querySelector('input[name="help_option"]:checked').value;
-            const secondOpinion = document.getElementById('second_opinion');
-
-            secondOpinion.style.display = 'none';
-
-            if (helpOption === 'Help with Diagnosis') {
-                secondOpinion.style.display = 'block';
-            }
-        }
-
-        function handleSecondOpinionChange() {
-            const secondOpinion = document.querySelector('input[name="second_opinion"]:checked').value;
-            const startedTreatment = document.getElementById('started_treatment');
-
-            startedTreatment.style.display = 'none';
-
-            if (secondOpinion === 'yes') {
-                startedTreatment.style.display = 'block';
-            }
-        }
-
-        function handleTreatmentChange() {
-            const startedTreatment = document.querySelector('input[name="started_treatment"]:checked').value;
-            const additionalInfo = document.getElementById('additional_info');
-            const genderSelection = document.getElementById('gender_selection');
-            const ehrSync = document.getElementById('ehr_sync');
-            const confirmInfo = document.getElementById('confirm_info');
-
-            additionalInfo.style.display = 'none';
-            genderSelection.style.display = 'none';
-            ehrSync.style.display = 'none';
-            confirmInfo.style.display = 'none';
-
-            if (startedTreatment === 'yes') {
-                additionalInfo.style.display = 'block';
-                genderSelection.style.display = 'block';
-            }
-        }
-
-        function handleGenderChange() {
-            const gender = document.querySelector('input[name="gender"]:checked').value;
-            const ehrSync = document.getElementById('ehr_sync');
-            const confirmInfo = document.getElementById('confirm_info');
-
-            ehrSync.style.display = 'none';
-            confirmInfo.style.display = 'none';
-
-            if (gender === 'female') {
-                ehrSync.style.display = 'block';
-            }
-            confirmInfo.style.display = 'block';
-        }
-
-        function handleConsentChange() {
-            const consent = document.querySelector('input[name="consent"]:checked').value;
-            const consentQuestion = document.getElementById('help_today_section');
-            if (consent === 'yes') {
-                consentQuestion.style.display = 'block';
-            } else {
-                consentQuestion.style.display = 'none';
-            }
-        }
-
-        function handleConfirmInfoChange() {
-            const confirmInfo = document.querySelector('input[name="confirm_info"]:checked').value;
-            const socialSupportSection = document.getElementById('social_support_section');
-            if (confirmInfo === 'yes') {
-                socialSupportSection.style.display = 'block';
-            } else {
-                socialSupportSection.style.display = 'none';
-            }
-        }
-    </script>
 </head>
 <body>
     <nav>
@@ -119,8 +21,21 @@
     <div class="container">
         <h1>Breast Cancer Patient Questionnaire</h1>
         <form id="patientForm" method="POST">
+
+            <!-- Consent Document Section -->
+            <h2>Consent Document</h2>
+            <div class="consent-document">
+                <p>Please read the following consent document carefully:</p>
+                <embed src="{{ url_for('static', filename='consent_form.pdf') }}" type="application/pdf" width="100%" height="600px" />
+            </div>
+
+            <!-- Patient's Name -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
             <!-- Informed Consent Section -->
             <label for="consent">Informed Consent to Telemedicine Consultation:</label>
+            <p id="consent-text">By clicking "Yes," I, [Your Name], give my informed consent to the telemedicine consultation.</p>
             <input type="radio" id="consent_yes" name="consent" value="yes" onclick="handleConsentChange()"> Yes
             <input type="radio" id="consent_no" name="consent" value="no" onclick="handleConsentChange()"> No
 
@@ -182,9 +97,6 @@
             </div>
 
             <!-- Other Questions -->
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" name="name" required>
-
             <label for="age">Age:</label>
             <input type="number" id="age" name="age" required>
 
@@ -223,23 +135,20 @@
                 <option value="Unsure">Unsure</option>
             </select>
 
-            <label for="qualities">Specific qualities you prefer in a doctor:</label>
-            <textarea id="qualities" name="qualities" rows="3"></textarea>
-
             <label for="additional_concerns">Any additional concerns or preferences:</label>
             <textarea id="additional_concerns" name="additional_concerns" rows="3"></textarea>
 
-            <label for="ethnicity">Ethnicity:</label>
-            <select id="ethnicity" name="ethnicity" required>
-                <option value="">Select</option>
-                <option value="American Indian or Alaskan Native">American Indian or Alaskan Native</option>
-                <option value="Asian">Asian</option>
-                <option value="Black or African American">Black or African American</option>
-                <option value="Hispanic or Latino">Hispanic or Latino</option>
-                <option value="Native Hawaiian or Other Pacific Islander">Native Hawaiian or Other Pacific Islander</option>
-                <option value="White">White</option>
-                <option value="Other">Other</option>
-            </select>
+            <label for="religiosity">Religiosity:</label>
+            <input type="text" id="religiosity" name="religiosity">
+
+            <label for="immigration_status">Immigration Status:</label>
+            <input type="text" id="immigration_status" name="immigration_status">
+
+            <label for="social_support">Social Support:</label>
+            <input type="text" id="social_support" name="social_support">
+
+            <label for="doctor_preferences">Doctor Preferences:</label>
+            <input type="text" id="doctor_preferences" name="doctor_preferences">
 
             <!-- Social Support Section -->
             <div id="social_support_section" style="display:none;">
@@ -324,6 +233,20 @@
             <input type="submit" value="Submit">
         </form>
     </div>
+
+    <!-- Script section -->
+    <script>
+        // JavaScript for handling consent text update
+        document.getElementById('name').addEventListener('input', function() {
+            var name = document.getElementById('name').value;
+            var consentText = document.getElementById('consent-text');
+            if (name) {
+                consentText.textContent = 'By clicking "Yes," I, ' + name + ', give my informed consent to the telemedicine consultation.';
+            } else {
+                consentText.textContent = 'By clicking "Yes," I, [Your Name], give my informed consent to the telemedicine consultation.';
+            }
+        });
+    </script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
