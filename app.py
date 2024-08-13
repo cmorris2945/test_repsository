@@ -1,46 +1,13 @@
 # app.py
 
 from flask import Flask, render_template, request, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
-import urllib
+from database import db, init_db, Patient  # Import from database.py
 
 # Initialize Flask app
 app = Flask(__name__)
 
-# Configure Azure SQL Database connection
-server = 'drbotserver.database.windows.net'
-database = 'drbothealthdb'
-username = 'drbot'
-password = 'TheFlash40'  # Actual password from the connection string
-driver = '{ODBC Driver 18 for SQL Server}'  # Ensure this matches the installed driver
-
-# Create the connection string
-params = urllib.parse.quote_plus(
-    f'DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=60;'
-)
-
-# Configure SQLAlchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mssql+pyodbc:///?odbc_connect={params}"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db = SQLAlchemy(app)
-
-# Define Patient model
-class Patient(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    age = db.Column(db.Integer, nullable=False)
-    stage = db.Column(db.String(50), nullable=False)
-    previous_treatments = db.Column(db.String(200))
-    preferred_language = db.Column(db.String(50))
-    location = db.Column(db.String(100))
-    family_history = db.Column(db.String(50))
-    genetic_testing = db.Column(db.String(50))
-    additional_concerns = db.Column(db.Text)
-    religiosity = db.Column(db.String(50))
-    immigration_status = db.Column(db.String(50))
-    social_support = db.Column(db.String(50))
-    doctor_preferences = db.Column(db.String(100))
+# Initialize the database
+init_db(app)
 
 # Route for the main page
 @app.route('/', methods=['GET', 'POST'])
