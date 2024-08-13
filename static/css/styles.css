@@ -105,6 +105,7 @@ label {
 
 input[type="text"], 
 input[type="number"], 
+input[type="date"],
 select, 
 textarea {
     width: 100%; 
@@ -119,6 +120,7 @@ textarea {
 
 input[type="text"]:focus, 
 input[type="number"]:focus, 
+input[type="date"]:focus,
 select:focus, 
 textarea:focus {
     outline: none;
@@ -157,6 +159,51 @@ input[type="submit"] {
 
 input[type="submit"]:hover { 
     background: #2980b9; 
+}
+
+.consent-form {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.consent-form h2 {
+    color: #3498db;
+    margin-bottom: 15px;
+}
+
+.consent-content {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.consent-content ul {
+    padding-left: 20px;
+}
+
+.consent-content li {
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
 }
 
 /* Responsive design */

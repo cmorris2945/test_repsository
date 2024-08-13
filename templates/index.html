@@ -1,4 +1,3 @@
-<!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +8,6 @@
 </head>
 <body>
     <nav>
-        <div class="logo">
-            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" class="logo-img">
-        </div>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -21,94 +17,158 @@
 
     <div class="container">
         <h1>Breast Cancer Patient Questionnaire</h1>
-        <form id="patientForm" method="POST">
+        
+        <div id="consentForm" class="consent-form">
+            <h2>Consent Document</h2>
+            <p>Please read the following consent document carefully:</p>
+            <div class="consent-content">
+                <p>I understand that by completing this questionnaire, I am providing information to assist in my breast cancer care. I acknowledge that:</p>
+                <ul>
+                    <li>The information I provide will be used to tailor my care plan.</li>
+                    <li>My data will be kept confidential and secure.</li>
+                    <li>I can choose not to answer any question I'm not comfortable with.</li>
+                    <li>I can withdraw my consent at any time by contacting my healthcare provider.</li>
+                </ul>
+                <p>By signing below, I confirm that I have read and understood this consent document and agree to participate in the questionnaire.</p>
+            </div>
+            <div class="form-group">
+                <label for="consentName">Full Name:</label>
+                <input type="text" id="consentName" name="consentName" required>
+            </div>
+            <div class="form-group">
+                <label for="consentDate">Date:</label>
+                <input type="date" id="consentDate" name="consentDate" required>
+            </div>
+            <button id="agreeConsent" class="btn-primary">I Agree and Give My Consent</button>
+        </div>
+
+        <form id="patientForm" style="display: none;">
+        <div class="progress-bar">
+            <div id="form-progress" class="progress"></div>
+        </div>
+
+        <div class="form-group">
             <label for="name">Full Name:</label>
             <input type="text" id="name" name="name" required>
+        </div>
 
+        <div class="form-group">
             <label for="age">Age:</label>
             <input type="number" id="age" name="age" required>
+        </div>
 
+        <div class="form-group">
             <label for="stage">Cancer Stage:</label>
             <select id="stage" name="stage" required>
                 <option value="">Select Stage</option>
-                <option value="Stage 0">Stage 0</option>
-                <option value="Stage I">Stage I</option>
-                <option value="Stage II">Stage II</option>
-                <option value="Stage III">Stage III</option>
-                <option value="Stage IV">Stage IV</option>
+                <option value="0">Stage 0</option>
+                <option value="1">Stage I</option>
+                <option value="2">Stage II</option>
+                <option value="3">Stage III</option>
+                <option value="4">Stage IV</option>
             </select>
+        </div>
 
+        <div class="form-group">
             <label for="previous_treatments">Previous Treatments (if any):</label>
-            <textarea id="previous_treatments" name="previous_treatments" rows="3"></textarea>
+            <textarea id="previous_treatments" name="previous_treatments"></textarea>
+        </div>
 
+        <div class="form-group">
             <label for="preferred_language">Preferred Language:</label>
             <input type="text" id="preferred_language" name="preferred_language">
+        </div>
 
+        <div class="form-group">
             <label for="location">Location (City, State):</label>
             <input type="text" id="location" name="location" required>
+        </div>
 
-            <!-- New questions -->
-            <label for="family_history">Family History of Breast Cancer:</label>
-            <select id="family_history" name="family_history" required>
-                <option value="">Select</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-                <option value="Unknown">Unknown</option>
-            </select>
+        <div class="form-group">
+            <label>Family History of Breast Cancer:</label>
+            <div class="radio-group">
+                <input type="radio" id="family_history_yes" name="family_history" value="yes" required>
+                <label for="family_history_yes">Yes</label>
+                <input type="radio" id="family_history_no" name="family_history" value="no">
+                <label for="family_history_no">No</label>
+                <input type="radio" id="family_history_unknown" name="family_history" value="unknown">
+                <label for="family_history_unknown">Unknown</label>
+            </div>
+        </div>
 
-            <label for="genetic_testing">Have you had genetic testing?</label>
-            <select id="genetic_testing" name="genetic_testing" required>
-                <option value="">Select</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-                <option value="Unsure">Unsure</option>
-            </select>
+        <div class="form-group">
+            <label>Have you had genetic testing?</label>
+            <div class="radio-group">
+                <input type="radio" id="genetic_testing_yes" name="genetic_testing" value="yes" required>
+                <label for="genetic_testing_yes">Yes</label>
+                <input type="radio" id="genetic_testing_no" name="genetic_testing" value="no">
+                <label for="genetic_testing_no">No</label>
+                <input type="radio" id="genetic_testing_unsure" name="genetic_testing" value="unsure">
+                <label for="genetic_testing_unsure">Unsure</label>
+            </div>
+        </div>
 
-            <section id="optional-questions">
-                <h2>Optional Questions</h2>
-                <label for="religiosity"> What is you religion></label>
-                <select id="religiosity" name="religiosity">
-                    <option value="">Select</option>
-                    <option value="Catholic">Catholic</option>
-                    <option value="Jewish">Jewish</option>
-                    <option value="Muslim">Muslim</option>
-                    <option value="Protestant">Protestant</option>
-                    <option value="Other">Other</option>
-                   
-                </select>
-                <label for="immigration_status">immigration_status:</label>
-                <select id="immigration_status"name="immigration_status">
-                    <option value="">Select</option>
-                    <option value="Citizen">Citizen</option>
-                    <optiont value="Non-citizen">Non-citizen</optiont>
-                    <option value="Resident">Resident</option>
-                    <option value="Other">Other</option>
-                </select>
-                <label for="social_support">Do you need social support?</label>
-                <input type="radio" id="social_support_yes" name="social_support" value="Yes">
-                <label for="social_support_yes">Yes</label>
-                <input type="radio" id="social_support_no" name="social_support" value="No">
-                <label for="social_support_no">No</label>
-
-                <label for="doctor_preferences">Are you looking for any specific qualities in your doctor?</label>
-                <select id="doctor_preferences" name="doctor_preferences">
-                    <option value="">Select</option>
-                    <option value="Patience">Patience</option>
-                    <option value="Time with Patient">Time with Patient</option>
-                    <option value="Personality and Bedside Manner">Personality and Bedside Manner</option>
-                    <option value="Clear Communication">Clear Communication</option>
-                    <option value="Other">Other</option>
-                </select>
-
+        <div id="optional-questions" class="section">
+            <h2>Optional Questions</h2>
             
-            </section>
+            <div class="form-group">
+                <label for="religion">What is your religion?</label>
+                <select id="religion" name="religion">
+                    <option value="">Select</option>
+                    <option value="catholic">Catholic</option>
+                    <option value="jewish">Jewish</option>
+                    <option value="muslim">Muslim</option>
+                    <option value="protestant">Protestant</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
 
+            <div class="form-group">
+                <label for="immigration_status">Immigration Status:</label>
+                <select id="immigration_status" name="immigration_status">
+                    <option value="">Select</option>
+                    <option value="citizen">Citizen</option>
+                    <option value="non-citizen">Non-citizen</option>
+                    <option value="resident">Resident</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Do you need social support?</label>
+                <div class="radio-group">
+                    <input type="radio" id="social_support_yes" name="social_support" value="yes">
+                    <label for="social_support_yes">Yes</label>
+                    <input type="radio" id="social_support_no" name="social_support" value="no">
+                    <label for="social_support_no">No</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Are you looking for any specific qualities in your doctor?</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="doctor_quality_patience" name="doctor_qualities" value="patience">
+                    <label for="doctor_quality_patience">Patience</label>
+                    <input type="checkbox" id="doctor_quality_time" name="doctor_qualities" value="time">
+                    <label for="doctor_quality_time">Time with Patient</label>
+                    <input type="checkbox" id="doctor_quality_bedside" name="doctor_qualities" value="bedside">
+                    <label for="doctor_quality_bedside">Personality and Bedside Manner</label>
+                    <input type="checkbox" id="doctor_quality_communication" name="doctor_qualities" value="communication">
+                    <label for="doctor_quality_communication">Clear Communication</label>
+                    <input type="checkbox" id="doctor_quality_other" name="doctor_qualities" value="other">
+                    <label for="doctor_quality_other">Other</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
             <label for="additional_concerns">Any additional concerns or preferences:</label>
-            <textarea id="additional_concerns" name="additional_concerns" rows="3"></textarea>
+            <textarea id="additional_concerns" name="additional_concerns"></textarea>
+        </div>
 
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+        <input type="submit" value="Submit Questionnaire">
+    </form>
+</div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

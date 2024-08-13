@@ -1,32 +1,33 @@
 // static/js/script.js
 
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('patientForm');
-    const progressBar = document.getElementById('form-progress');
-    const formFields = form.querySelectorAll('input, select, textarea');
-    const totalFields = formFields.length;
+    const consentForm = document.getElementById('consentForm');
+    const patientForm = document.getElementById('patientForm');
+    const agreeConsentBtn = document.getElementById('agreeConsent');
+    const consentName = document.getElementById('consentName');
+    const consentDate = document.getElementById('consentDate');
+    const patientName = document.getElementById('name'); // Assuming this is the ID of the name field in the main form
 
-    function updateProgress() {
-        let filledFields = 0;
-        formFields.forEach(field => {
-            if (field.type === 'radio') {
-                if (field.checked) {
-                    filledFields++;
-                }
-            } else if (field.value.trim() !== '') {
-                filledFields++;
-            }
-        });
-        const progress = (filledFields / totalFields) * 100;
-        progressBar.style.width = `${progress}%`;
-    }
+    // Set current date automatically
+    const currentDate = new Date().toISOString().split('T')[0];
+    consentDate.value = currentDate;
 
-    formFields.forEach(field => {
-        field.addEventListener('input', updateProgress);
-        field.addEventListener('change', updateProgress);
+    // Consent form handling
+    agreeConsentBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        if (consentName.value.trim() === '') {
+            alert('Please fill in your name to give consent.');
+            return;
+        }
+        consentForm.style.display = 'none';
+        patientForm.style.display = 'block';
+        
+        // Carry over the name to the main form
+        patientName.value = consentName.value;
+        
+        updateProgress(); // Make sure this function is defined
     });
 
-    updateProgress(); // Initial progress update
 
     form.addEventListener('submit', function(event) {
         let isValid = true;
