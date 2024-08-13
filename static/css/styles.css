@@ -128,21 +128,75 @@ textarea:focus {
     border-color: #3498db;
 }
 
-.radio-group {
+.radio-group,
+.checkbox-group {
     display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.radio-group label,
+.checkbox-group label {
+    display: inline-flex;
     align-items: center;
-    margin-top: 8px;
-}
-
-.radio-group input[type="radio"] {
-    margin-right: 5px;
-}
-
-.radio-group label {
-    margin-right: 20px;
+    cursor: pointer;
     font-weight: normal;
 }
 
+.radio-group input[type="radio"],
+.checkbox-group input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .radio-group,
+    .checkbox-group {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .radio-group label,
+    .checkbox-item {
+        width: calc(50% - 10px);
+    }
+}
+
+/* Add or update these styles in your CSS file */
+
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+}
+
+.radio-item input[type="radio"] {
+    margin-right: 5px;
+}
+
+.radio-item label {
+    margin: 0;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
 input[type="submit"] { 
     display: block; 
     width: 100%; 
