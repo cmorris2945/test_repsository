@@ -336,6 +336,98 @@
                 <p>Scheduling transportation...</p>
             </div>
 
+            <label for="religiosity">Religiosity:</label>
+            <input type="text" id="religiosity" name="religiosity">
+
+            <label for="immigration_status">Immigration Status:</label>
+            <input type="text" id="immigration_status" name="immigration_status">
+
+            <label for="social_support">Social Support:</label>
+            <input type="text" id="social_support" name="social_support">
+
+            <label for="doctor_preferences">Doctor Preferences:</label>
+            <input type="text" id="doctor_preferences" name="doctor_preferences">
+
+            <!-- Social Support Section -->
+            <div id="social_support_section" style="display:none;">
+                <h2>Social Support</h2>
+                <label for="social_support_status">What is your social support status?</label>
+                <select id="social_support_status" name="social_support_status">
+                    <option value="">Select</option>
+                    <option value="Need additional support">Need additional support</option>
+                    <option value="Adequate current support">Adequate current support</option>
+                    <option value="Don't have social support">Don't have social support</option>
+                    <option value="Not sure">Not sure</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+
+                <label for="physician_experience">Physician/Healthcare Oncologist Experience:</label>
+                <select id="physician_experience" name="physician_experience">
+                    <option value="">Select</option>
+                    <option value="1-5">1-5 years</option>
+                    <option value="5-10">5-10 years</option>
+                    <option value="10+">10+ years</option>
+                </select>
+
+                <label for="treatment_cases">Treatment of Similar Cases:</label>
+                <select id="treatment_cases" name="treatment_cases">
+                    <option value="">Select</option>
+                    <option value="1-10">1-10 cases</option>
+                    <option value="10-30">10-30 cases</option>
+                    <option value="30+">30+ cases</option>
+                </select>
+
+                <label for="patient_satisfaction">Patient Satisfaction Score:</label>
+                <select id="patient_satisfaction" name="patient_satisfaction">
+                    <option value="">Select</option>
+                    <option value="<2"><2</option>
+                    <option value="2-5">2-5</option>
+                    <option value="5-7">5-7</option>
+                    <option value="7-10">7-10</option>
+                </select>
+
+                <label for="appointment_wait_time">Appointment Wait Time (hrs):</label>
+                <select id="appointment_wait_time" name="appointment_wait_time">
+                    <option value="">Select</option>
+                    <option value="<1"><1</option>
+                    <option value="1-3">1-3</option>
+                    <option value=">3">>3</option>
+                </select>
+
+                <label for="proximity">Proximity (miles):</label>
+                <select id="proximity" name="proximity">
+                    <option value="">Select</option>
+                    <option value="<2"><2 miles</option>
+                    <option value="2-5">2-5 miles</option>
+                    <option value="5+">5+ miles</option>
+                </select>
+
+                <label for="treatment_approach">Treatment Approach:</label>
+                <select id="treatment_approach" name="treatment_approach">
+                    <option value="">Select</option>
+                    <option value="Standard medical care">Standard medical care</option>
+                    <option value="Conservative treatment approach">Conservative treatment approach</option>
+                    <option value="Newer treatment modalities">Newer treatment modalities</option>
+                    <option value="Clinical trials or experimental treatments">Clinical trials or experimental treatments</option>
+                    <option value="Complementary and alternative healing">Complementary and alternative healing</option>
+                    <option value="Integrative or holistic approach">Integrative or holistic approach</option>
+                    <option value="I want to know more">I want to know more</option>
+                </select>
+            </div>
+
+            <label for="schedule_appointment">Do you want me to call and schedule an appointment?</label>
+            <input type="radio" id="schedule_appointment_yes" name="schedule_appointment" value="yes"> Yes
+            <input type="radio" id="schedule_appointment_no" name="schedule_appointment" value="no"> No
+
+            <label for="schedule_transportation">Schedule transportation?</label>
+            <input type="radio" id="schedule_transportation_yes" name="schedule_transportation" value="yes"> Yes
+            <input type="radio" id="schedule_transportation_no" name="schedule_transportation" value="no"> No
+            <input type="radio" id="schedule_transportation_later" name="schedule_transportation" value="later"> Later
+
+            <div id="transportation_status" style="display:none;">
+                <p>Scheduling transportation...</p>
+            </div>
+
             <input type="submit" value="Submit">
         </form>
     </div>
