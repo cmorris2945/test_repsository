@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/2f16cd0b-370b-4f1c-b06b-183db1512377/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/drbothealth2",
+    "appService.deploySubpath": "."
+}

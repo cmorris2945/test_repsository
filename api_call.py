@@ -14,17 +14,19 @@ class PatientResource(Resource):
                 'id': patient.id,
                 'name': patient.name,
                 'age': patient.age,
+                'sex': patient.sex,  # Add this line
                 'stage': patient.stage,
                 'previous_treatments': patient.previous_treatments,
                 'preferred_language': patient.preferred_language,
                 'location': patient.location,
                 'family_history': patient.family_history,
                 'genetic_testing': patient.genetic_testing,
-                'additional_concerns': patient.additional_concerns,
                 'religiosity': patient.religiosity,
                 'immigration_status': patient.immigration_status,
                 'social_support': patient.social_support,
-                'doctor_preferences': patient.doctor_preferences
+                'treatment_approach': patient.treatment_approach,  # Add this line
+                'doctor_preferences': patient.doctor_preferences,
+                'additional_concerns': patient.additional_concerns
             })
         else:
             patients = Patient.query.all()
@@ -34,24 +36,42 @@ class PatientResource(Resource):
                     'id': patient.id,
                     'name': patient.name,
                     'age': patient.age,
+                    'sex': patient.sex,  # Add this line
                     'stage': patient.stage,
                     'previous_treatments': patient.previous_treatments,
                     'preferred_language': patient.preferred_language,
                     'location': patient.location,
                     'family_history': patient.family_history,
                     'genetic_testing': patient.genetic_testing,
-                    'additional_concerns': patient.additional_concerns,
                     'religiosity': patient.religiosity,
                     'immigration_status': patient.immigration_status,
                     'social_support': patient.social_support,
-                    'doctor_preferences': patient.doctor_preferences
+                    'treatment_approach': patient.treatment_approach,  # Add this line
+                    'doctor_preferences': patient.doctor_preferences,
+                    'additional_concerns': patient.additional_concerns
                 })
             return jsonify(result), 200
 
     def post(self):
         try:
             data = request.get_json()
-            new_patient = Patient(**data)
+            new_patient = Patient(
+                name=data.get('name'),
+                age=data.get('age'),
+                sex=data.get('sex'),  # Add this line
+                stage=data.get('stage'),
+                previous_treatments=data.get('previous_treatments'),
+                preferred_language=data.get('preferred_language'),
+                location=data.get('location'),
+                family_history=data.get('family_history'),
+                genetic_testing=data.get('genetic_testing'),
+                religiosity=data.get('religiosity', ''),
+                immigration_status=data.get('immigration_status', ''),
+                social_support=data.get('social_support', ''),
+                treatment_approach=data.get('treatment_approach', ''),  # Add this line
+                doctor_preferences=data.get('doctor_preferences', ''),
+                additional_concerns=data.get('additional_concerns', '')
+            )
             db.session.add(new_patient)
             db.session.commit()
             return jsonify({'message': 'Patient created successfully'}), 201

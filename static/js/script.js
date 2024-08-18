@@ -1,5 +1,3 @@
-// static/js/script.js
-
 document.addEventListener('DOMContentLoaded', function() {
     const consentForm = document.getElementById('consentForm');
     const patientForm = document.getElementById('patientForm');
@@ -28,8 +26,39 @@ document.addEventListener('DOMContentLoaded', function() {
         updateProgress(); // Make sure this function is defined
     });
 
+    // Handle the questionnaire progression
+    document.getElementById('help_today').addEventListener('change', function() {
+        document.getElementById('help_options').style.display = 'block';
+    });
 
-    form.addEventListener('submit', function(event) {
+    document.getElementById('help_option').addEventListener('change', function() {
+        document.getElementById('second_opinion').style.display = 'block';
+    });
+
+    document.querySelectorAll('input[name="second_opinion"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            document.getElementById('started_treatment').style.display = 'block';
+        });
+    });
+
+    document.querySelectorAll('input[name="started_treatment"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            document.getElementById('additional_info').style.display = 'block';
+        });
+    });
+
+    document.getElementById('gender').addEventListener('change', function() {
+        document.getElementById('ehr_sync').style.display = 'block';
+    });
+
+    document.querySelectorAll('input[name="confirm_info"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            document.getElementById('final_questions').style.display = 'block';
+        });
+    });
+
+    // Form validation before submission
+    patientForm.addEventListener('submit', function(event) {
         let isValid = true;
 
         // Validate required fields
@@ -90,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Enhance form interactivity
+    const formFields = document.querySelectorAll('input, select, textarea');
     formFields.forEach(field => {
         field.addEventListener('focus', function() {
             this.parentElement.classList.add('active');
@@ -103,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Optional: Add a confirmation before form submission
-    form.addEventListener('submit', function(event) {
+    patientForm.addEventListener('submit', function(event) {
         if (!confirm('Are you sure you want to submit the form?')) {
             event.preventDefault();
         }
