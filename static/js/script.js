@@ -26,36 +26,52 @@ document.addEventListener('DOMContentLoaded', function() {
         updateProgress(); // Make sure this function is defined
     });
 
+    // Hide all sections initially except for the first question
+    const sections = ['help_options', 'second_opinion', 'started_treatment', 'additional_info', 'gender_selection', 'ehr_sync', 'final_questions'];
+    sections.forEach(section => {
+        document.getElementById(section).style.display = 'none';
+    });
+
     // Handle the questionnaire progression
     document.getElementById('help_today').addEventListener('change', function() {
-        document.getElementById('help_options').style.display = 'block';
+        showNextSection('help_options');
     });
 
     document.getElementById('help_option').addEventListener('change', function() {
-        document.getElementById('second_opinion').style.display = 'block';
+        showNextSection('second_opinion');
     });
 
     document.querySelectorAll('input[name="second_opinion"]').forEach(function(radio) {
         radio.addEventListener('change', function() {
-            document.getElementById('started_treatment').style.display = 'block';
+            showNextSection('started_treatment');
         });
     });
 
     document.querySelectorAll('input[name="started_treatment"]').forEach(function(radio) {
         radio.addEventListener('change', function() {
-            document.getElementById('additional_info').style.display = 'block';
+            showNextSection('additional_info');
         });
     });
 
+    document.getElementById('insurance_name').addEventListener('change', function() {
+        showNextSection('gender_selection');
+    });
+
     document.getElementById('gender').addEventListener('change', function() {
-        document.getElementById('ehr_sync').style.display = 'block';
+        showNextSection('ehr_sync');
     });
 
     document.querySelectorAll('input[name="confirm_info"]').forEach(function(radio) {
         radio.addEventListener('change', function() {
-            document.getElementById('final_questions').style.display = 'block';
+            showNextSection('final_questions');
         });
     });
+
+    // Function to show the next section
+    function showNextSection(sectionId) {
+        document.getElementById(sectionId).style.display = 'block';
+        smoothScroll('#' + sectionId);
+    }
 
     // Form validation before submission
     patientForm.addEventListener('submit', function(event) {
