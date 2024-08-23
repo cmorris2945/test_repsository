@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediConnect - Doctor Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><i class="fas fa-heartbeat"></i> MediConnect</div>
+        <nav>
+            <a href="#" class="active"><i class="fas fa-th-large"></i> Dashboard</a>
+            <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+    </header>
+    
+    <main class="dashboard-container">
+        <h2><i class="fas fa-user-md"></i> Welcome, Dr. {{ current_user.full_name }}</h2>
+        
+        <div class="dashboard-summary">
+            <div class="summary-card">
+                <i class="fas fa-users"></i>
+                <h3>Total Patients</h3>
+                <p>{{ patient_demographics.total_patients }}</p>
+            </div>
+            <div class="summary-card">
+                <i class="fas fa-calendar-check"></i>
+                <h3>Appointments Today</h3>
+                <p>0</p>
+            </div>
+            <div class="summary-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Unread Messages</h3>
+                <p>0</p>
+            </div>
+        </div>
+
+        <div class="search-patients">
+            <h3><i class="fas fa-search"></i> Search Patients</h3>
+            <input type="text" placeholder="Search patients...">
+            <button class="btn">Search</button>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3><i class="fas fa-chart-pie"></i> Patient Demographics</h3>
+                <div class="chart-placeholder">Chart placeholder</div>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-history"></i> Treatment History</h3>
+                <ul>
+                    {% for treatment, count in patient_demographics.treatment_history.items() %}
+                    <li>{{ treatment if treatment else 'No treatment' }}: {{ count }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-dna"></i> Genetic Testing Status</h3>
+                <ul>
+                    {% for status, count in patient_demographics.genetic_testing.items() %}
+                    <li>{{ status.capitalize() }}: {{ count }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-language"></i> Language Preferences</h3>
+                <ul>
+                    {% for language, count in patient_demographics.language_preferences.items() %}
+                    <li>{{ language }}: {{ count }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-hands-helping"></i> Social Support Needs</h3>
+                <p>Patients Needing Support: {{ patient_demographics.social_support.get('Need additional support', 0) }}</p>
+                <button class="btn">View Details</button>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-user-cog"></i> Patient Preferences</h3>
+                <p>Data not available</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3><i class="fas fa-user-clock"></i> Recent Patients</h3>
+            <p>No recent patients.</p>
+        </div>
+
+        <div class="card">
+            <h3><i class="fas fa-calendar-alt"></i> Appointment Calendar</h3>
+            <div class="calendar-placeholder">Calendar placeholder</div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 MediConnect. All rights reserved.</p>
+    </footer>
+</body>
+</html>

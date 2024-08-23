@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediConnect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><i class="fas fa-heartbeat"></i> MediConnect</div>
+        <nav>
+            <a href="{{ url_for('login') }}" class="login-btn"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="{{ url_for('register') }}" class="register-btn"><i class="fas fa-user-plus"></i> Register</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to MediConnect</h1>
+                <p>Using AI to Match Patients with Doctors and Services</p>
+                <div class="hero-buttons">
+                    <a href="{{ url_for('login') }}" class="btn survivor-login"><i class="fas fa-user"></i> Survivor Login</a>
+                    <a href="{{ url_for('login') }}" class="btn doctor-login"><i class="fas fa-user-md"></i> Doctor Login</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="{{ url_for('static', filename='images/hero_image.png') }}" alt="AI Doctor">
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <i class="fas fa-user-circle"></i>
+                    <h3>Create Profile</h3>
+                    <p>Sign up and fill out your medical profile</p>
+                </div>
+                <div class="step">
+                    <i class="fas fa-link"></i>
+                    <h3>Get Matched</h3>
+                    <p>Our AI matches you with suitable doctors</p>
+                </div>
+                <div class="step">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Book Appointment</h3>
+                    <p>Schedule your appointment with ease</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>Ready to Get Started?</h2>
+            <p>Experience our AI-powered healthcare matching system.</p>
+            <a href="{{ url_for('register') }}" class="btn"><i class="fas fa-user-plus"></i> Create an Account</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>MediConnect</p>
+            <p>Connecting patients with the right care.</p>
+        </div>
+        <div class="footer-legal">
+            <p>&copy; 2024 MediConnect. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

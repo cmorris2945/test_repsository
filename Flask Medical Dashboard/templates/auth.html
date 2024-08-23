@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Bot Health Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('auth') }}">Login/Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Welcome to Dr. Bot Health Dashboard</h1>
+            <p>Empowering healthcare professionals and patients with intelligent insights.</p>
+            <a href="{{ url_for('auth') }}" class="cta-button">Get Started</a>
+        </section>
+
+        <section class="features">
+            <h2>Our Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>Patient Analytics</h3>
+                    <p>Gain valuable insights into patient demographics and health trends.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Secure Access</h3>
+                    <p>Ensure data privacy with our robust authentication system.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Intuitive Dashboard</h3>
+                    <p>Navigate through patient data with our user-friendly interface.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Dr. Bot Health Dashboard. All rights reserved.</p>
+    </footer>
+</body>
+</html>
