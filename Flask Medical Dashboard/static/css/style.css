@@ -12,7 +12,7 @@ body {
 }
 
 header {
-    background-color: #00a086;
+    background-color: #607D8B; /* I changed this */
     color: #fff;
     padding: 1rem 2rem;
     display: flex;
@@ -47,12 +47,13 @@ main {
 .hero {
     display: flex;
     align-items: center;
-    background-color: #00a086;
+    background-color: #607D8B; /* I changed the color here... */
     color: white;
     padding: 4rem 2rem;
     border-radius: 10px;
     margin-bottom: 2rem;
 }
+
 
 .hero-content {
     flex: 1;
@@ -151,11 +152,12 @@ main {
 }
 
 footer {
-    background-color: #00a086;
+    background-color: #607D8B; /* i changed here*/
     color: white;
     padding: 2rem;
     text-align: center;
 }
+
 
 .footer-content {
     margin-bottom: 1rem;
@@ -356,25 +358,25 @@ body {
     border-radius: 4px;
 }
 
+/* blue buttons */
 .btn {
-    background-color: #00a086;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s;
+    background-color: #003366; /* Navy bule button change here... */
+    color: white; /* words */
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-    background-color: #008c75;
+    background-color: #002244; /* cahnged this*/
 }
 
+
 footer {
-    text-align: center;
-    margin-top: 2rem;
-    padding: 1rem;
-    background-color: #00a086;
+    background-color: #607D8B; /* change here color. */
     color: white;
+    padding: 2rem;
+    text-align: center;
 }
