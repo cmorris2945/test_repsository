@@ -100,7 +100,6 @@
         <!-- Consent Document Section -->
 <!-- Questionaire form-->
 
-        
             <div class="form-section">
                 <div id="help_today_section">
                     <label for="help_today">How can I help you today?</label>
@@ -116,7 +115,10 @@
 
             <div class="form-section">
                 <div id="help_options">
-                    <p>Ah, I know this is a tough experience. Let me help you find the care you need.</p>
+                    <p style="font-size: 1.5em;">Ah, I know this is a tough experience. Let me help you find the care you need. 😊😢</p>
+                    
+                    
+                    .</p>
                     <label for="help_option">Select an option:</label>
                     <select id="help_option" name="help_option">
                         <option value="">Select</option>
@@ -156,6 +158,34 @@
                         <option value="Optum">Optum</option>
                         <option value="United HealthCare">United HealthCare</option>
                     </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="genetic_testing">Have you had genetic testing done before?</label>
+                <div>
+                    <input type="radio" id="genetic_testing_yes" name="genetic_testing" value="Yes">
+                    <label for="genetic_testing_yes">Yes</label>
+                </div>
+                <div>
+                    <input type="radio" id="genetic_testing_no" name="genetic_testing" value="No">
+                    <label for="genetic_testing_no">No</label>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="family_history">Is there a family history of cancer?</label>
+                <div>
+                    <input type="radio" id="family_history_yes" name="family_history" value="Yes">
+                    <label for="family_history_yes">Yes</label>
+                </div>
+                <div>
+                    <input type="radio" id="family_history_no" name="family_history" value="No">
+                    <label for="family_history_no">No</label>
+                </div>
+                <div>
+                    <input type="radio" id="family_history_dont_know" name="family_history" value="I don't know">
+                    <label for="family_history_dont_know">I don't know</label>
                 </div>
             </div>
 
@@ -237,6 +267,10 @@
                     <div class="form-group">
                         <label for="treatment_approach">What is your preference for treatment approach?</label>
                         <select id="treatment_approach" name="treatment_approach">
+                            <option value="Standard medical care">Standard medical care</option>
+                            <option value="Conservative treatment">Conservative treatment</option>
+                            <option value="Newer treatment modalities">Newer treatment modalities</option>
+                            <option value="Clinical trials">Clinical trials</option>
                             <option value="Experimental treatments">Experimental treatments</option>
                             <option value="Complementary treatment">Complementary treatment</option>
                             <option value="Integrative approach">Integrative approach</option>
@@ -249,7 +283,7 @@
                     <div class="form-group">
                         <label for="doctor_preferences">Are you looking for any specific qualities in your doctor?</label>
                         <select id="doctor_preferences" name="doctor_preferences">
-                            <option value="Compassion">Compassion</option>
+                          <option value="Compassion">Compassion</option>
                             <option value="Comfort">Comfort</option>
                             <option value="Patience">Patience</option>
                             <option value="Personality and bedside manner">Personality and bedside manner</option>
@@ -259,22 +293,54 @@
                             <option value="I'm not sure">I'm not sure</option>
                         </select>
                     </div>
-
                     <p>Patient profiling and information input done. Finding your best match now...</p>
                     <ul>
-                        <li>Dr. Elisa R. Port, MD</li>
-                        <li>Dr. Eleni Andreopoulou, MD</li>
-                        <li>Dr. Ting Bao, MD, MS</li>
+                        <li>
+                            <img src="{{ url_for('static', filename='images/elisa.jpg') }}" alt="Dr. Elisa R. Port, MD" style="width:50px;height:50px;border-radius:50%;">
+                            <a href="https://www.example.com/dr_elisa_port" target="_blank">Dr. Elisa R. Port, MD</a>
+                        </li>
+                        
+                        
+                        
+                            <img src="{{ url_for('static', filename='images/eleni-andreopoulou.png') }}" alt="Dr. Eleni Andreopoulou, MD" style="width:50px;height:50px;border-radius:50%;">
+                            <a href="https://www.example.com/dr_eleni_andreopoulou" target="_blank">Dr. Eleni Andreopoulou, MD</a>
+                        </li>
+                        
+                        <li>
+                            <img src="{{ url_for('static', filename='images/ting-bao-md-new-york-ny.jpg') }}" alt="Dr. Ting Bao, MD, MS" style="width:50px;height:50px;border-radius:50%;">
+                            <a href="https://www.example.com/dr_ting_bao" target="_blank">Dr. Ting Bao, MD, MS</a>
+                        </li>
+                        
                     </ul>
+                    
+                    
+    
+                    <!-- Additional Questions -->
+                    <div class="form-group">
+                        <label for="automated_appointment">Would you like to get an automated appointment?</label>
+                        <input type="radio" id="automated_appointment_yes" name="automated_appointment" value="yes"> Yes
+                        <input type="radio" id="automated_appointment_no" name="automated_appointment" value="no"> No
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="medical_transportation">Do you need medical transportation?</label>
+                        <input type="radio" id="medical_transportation_yes" name="medical_transportation" value="yes"> Yes
+                        <input type="radio" id="medical_transportation_no" name="medical_transportation" value="no"> No
+                    </div>
+    
                 </div>
             </div>
-
+    
             <div class="submit-container">
                 <input type="submit" value="Submit">
             </div>
-        </form>
-    </div>
+        </div>
 
+
+
+
+
+    
    <!-- Questionaire form-->
  
 
