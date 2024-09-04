@@ -25,57 +25,6 @@
         <div id="consentForm" class="consent-form">
             <h2>Consent Document</h2>
             <p>Please read the following consent document carefully:</p>
-            <embed src="{{ url_for('static', filename='consent_form.pdf') }}" type="application/pdf" width="100%" height="600px" />
-            <div class="consent-content">
-                <p>I understand that by completing this questionnaire, I am providing information to assist in my breast cancer care. I acknowledge that:</p>
-                <ul>
-                    <li>The information I provide will be used to tailor my care plan.</li>
-                    <li>My data will be kept confidential and secure.</li>
-                    <li>I can choose not to answer any question I'm not comfortable with.</li>
-                    <li>I can withdraw my consent at any time by contacting my healthcare provider.</li>
-                </ul>
-                <p>By signing below, I confirm that I have read and understood this consent document and agree to participate in the questionnaire.</p>
-            </div>
-            <div class="form-group">
-                <label for="consentName">Full Name:</label>
-                <input type="text" id="consentName" name="consentName" required>
-            </div>
-            <div class="form-group">
-                <label for="consentDate">Date:</label>
-                <input type="date" id="consentDate" name="consentDate" required>
-            </div>
-            <button id="agreeConsent" class="btn-primary">I Agree and Give My Consent</button>
-        </div>
-<!-- Consent Document Section -->
-<!-- Questionaire form-->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breast Cancer Patient Questionnaire</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>
-<body>
-    <nav>
-        <div class="logo">
-            <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" class="logo-img">
-        </div>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <div class="container">
-        <h1>Breast Cancer Patient Questionnaire</h1>
-        
-        <!-- Consent Document Section -->
-        <div id="consentForm" class="consent-form">
-            <h2>Consent Document</h2>
-            <p>Please read the following consent document carefully:</p>
             <embed src="https://drhealthblob.blob.core.windows.net/healthbotcontainer/consent_form.pdf" type="application/pdf" width="100%" height="600px" />
             <div class="consent-content">
                 <p>I understand that by completing this questionnaire, I am providing information to assist in my breast cancer care. I acknowledge that:</p>
@@ -98,8 +47,9 @@
             <button id="agreeConsent" class="btn-primary">I Agree and Give My Consent</button>
         </div>
         <!-- Consent Document Section -->
-<!-- Questionaire form-->
-
+        <!-- Questionaire form-->
+        <form id="patientForm" method="POST" style="display: none;">
+        <div>
             <div class="form-section">
                 <div id="help_today_section">
                     <label for="help_today">How can I help you today?</label>
@@ -116,9 +66,6 @@
             <div class="form-section">
                 <div id="help_options">
                     <p style="font-size: 1.5em;">Ah, I know this is a tough experience. Let me help you find the care you need. 😊😢</p>
-                    
-                    
-                    .</p>
                     <label for="help_option">Select an option:</label>
                     <select id="help_option" name="help_option">
                         <option value="">Select</option>
@@ -158,34 +105,6 @@
                         <option value="Optum">Optum</option>
                         <option value="United HealthCare">United HealthCare</option>
                     </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="genetic_testing">Have you had genetic testing done before?</label>
-                <div>
-                    <input type="radio" id="genetic_testing_yes" name="genetic_testing" value="Yes">
-                    <label for="genetic_testing_yes">Yes</label>
-                </div>
-                <div>
-                    <input type="radio" id="genetic_testing_no" name="genetic_testing" value="No">
-                    <label for="genetic_testing_no">No</label>
-                </div>
-            </div>
-    
-            <div class="form-group">
-                <label for="family_history">Is there a family history of cancer?</label>
-                <div>
-                    <input type="radio" id="family_history_yes" name="family_history" value="Yes">
-                    <label for="family_history_yes">Yes</label>
-                </div>
-                <div>
-                    <input type="radio" id="family_history_no" name="family_history" value="No">
-                    <label for="family_history_no">No</label>
-                </div>
-                <div>
-                    <input type="radio" id="family_history_dont_know" name="family_history" value="I don't know">
-                    <label for="family_history_dont_know">I don't know</label>
                 </div>
             </div>
 
@@ -265,6 +184,34 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="genetic_testing">Have you had genetic testing done before?</label>
+                        <div>
+                            <input type="radio" id="genetic_testing_yes" name="genetic_testing" value="Yes">
+                            <label for="genetic_testing_yes">Yes</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="genetic_testing_no" name="genetic_testing" value="No">
+                            <label for="genetic_testing_no">No</label>
+                        </div>
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="family_history">Is there a family history of cancer?</label>
+                        <div>
+                            <input type="radio" id="family_history_yes" name="family_history" value="Yes">
+                            <label for="family_history_yes">Yes</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="family_history_no" name="family_history" value="No">
+                            <label for="family_history_no">No</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="family_history_dont_know" name="family_history" value="I don't know">
+                            <label for="family_history_dont_know">I don't know</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="treatment_approach">What is your preference for treatment approach?</label>
                         <select id="treatment_approach" name="treatment_approach">
                             <option value="Standard medical care">Standard medical care</option>
@@ -293,22 +240,27 @@
                             <option value="I'm not sure">I'm not sure</option>
                         </select>
                     </div>
+
                     <p>Patient profiling and information input done. Finding your best match now...</p>
+                    <!-- # Need to show this after some time with some confidence score -->
                     <ul>
                         <li>
                             <img src="{{ url_for('static', filename='images/elisa.jpg') }}" alt="Dr. Elisa R. Port, MD" style="width:50px;height:50px;border-radius:50%;">
                             <a href="https://www.example.com/dr_elisa_port" target="_blank">Dr. Elisa R. Port, MD</a>
+                            <!-- 98% -->
                         </li>
                         
                         
                         
                             <img src="{{ url_for('static', filename='images/eleni-andreopoulou.png') }}" alt="Dr. Eleni Andreopoulou, MD" style="width:50px;height:50px;border-radius:50%;">
                             <a href="https://www.example.com/dr_eleni_andreopoulou" target="_blank">Dr. Eleni Andreopoulou, MD</a>
+                            <!-- 83% -->
                         </li>
                         
                         <li>
                             <img src="{{ url_for('static', filename='images/ting-bao-md-new-york-ny.jpg') }}" alt="Dr. Ting Bao, MD, MS" style="width:50px;height:50px;border-radius:50%;">
                             <a href="https://www.example.com/dr_ting_bao" target="_blank">Dr. Ting Bao, MD, MS</a>
+                            <!-- 67% -->
                         </li>
                         
                     </ul>
@@ -334,7 +286,9 @@
             <div class="submit-container">
                 <input type="submit" value="Submit">
             </div>
-        </div>
+        </form>
+    </div>
+
 
 
 
