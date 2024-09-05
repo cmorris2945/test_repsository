@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function () {
             document.querySelector("#ehr_sync p").innerHTML = "Data retrieved. Please verify the information below.";
             showNextSection('ehr_sync_record')
-        }, 1000);  // 1000 milliseconds = 1 seconds
+        }, 3000);  // 3000 milliseconds = 3 seconds
     });
 
     document.querySelectorAll('input[name="confirm_info"]').forEach(function(radio) {
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function () {
             document.querySelector("#patientProfiling p").innerHTML = "Matching done. Please select the best doctor available.";
             showNextSection('doctorMatch')
-        }, 1000);  // 1000 milliseconds = 1 seconds
+        }, 2000);  // 2000 milliseconds = 2 seconds
     });
 
     // Function to show the next section
