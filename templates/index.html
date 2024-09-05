@@ -100,6 +100,7 @@
 
                     <label for="insurance_name">What is your insurance?</label>
                     <select id="insurance_name" name="insurance_name">
+                        <option value="">Select</option>
                         <option value="BCBS">BCBS</option>
                         <option value="Aetna">Aetna</option>
                         <option value="Optum">Optum</option>
@@ -112,6 +113,7 @@
                 <div id="gender_selection">
                     <label for="gender">Are you a biological male or female?</label>
                     <select id="gender" name="gender">
+                        <option value="">Select</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                     </select>
@@ -121,16 +123,18 @@
             <div class="form-section">
                 <div id="ehr_sync">
                     <p>Synching EHR Records...</p>
-                    <ul>
-                        <li>HER2 positive Breast Cancer</li>
-                        <li>42 years old</li>
-                        <li>100k-200k income range</li>
-                        <li>Married, 2 children</li>
-                        <li>College graduate education</li>
-                    </ul>
-                    <label for="confirm_info">Is the information correct?</label>
-                    <input type="radio" id="confirm_info_yes" name="confirm_info" value="yes"> Yes
-                    <input type="radio" id="confirm_info_no" name="confirm_info" value="no"> No
+                    <div id="ehr_sync_record">
+                        <ul id="record_list">
+                            <li>HER2 positive Breast Cancer</li>
+                            <li>42 years old</li>
+                            <li>100k-200k income range</li>
+                            <li>Married, 2 children</li>
+                            <li>College graduate education</li>
+                        </ul>
+                        <label id="confirm_label" for="confirm_info">Is the information correct?</label>
+                        <input type="radio" id="confirm_info_yes" name="confirm_info" value="yes"> Yes
+                        <input type="radio" id="confirm_info_no" name="confirm_info" value="no"> No
+                    </div>
                 </div>
             </div>
 
@@ -230,7 +234,8 @@
                     <div class="form-group">
                         <label for="doctor_preferences">Are you looking for any specific qualities in your doctor?</label>
                         <select id="doctor_preferences" name="doctor_preferences">
-                          <option value="Compassion">Compassion</option>
+                            <option value="">Select</option>
+                            <option value="Compassion">Compassion</option>
                             <option value="Comfort">Comfort</option>
                             <option value="Patience">Patience</option>
                             <option value="Personality and bedside manner">Personality and bedside manner</option>
@@ -241,45 +246,49 @@
                         </select>
                     </div>
 
-                    <p>Patient profiling and information input done. Finding your best match now...</p>
-                    <!-- # Need to show this after some time with some confidence score -->
-                    <ul>
-                        <li>
-                            <img src="{{ url_for('static', filename='images/elisa.jpg') }}" alt="Dr. Elisa R. Port, MD" style="width:50px;height:50px;border-radius:50%;">
-                            <a href="https://www.example.com/dr_elisa_port" target="_blank">Dr. Elisa R. Port, MD</a>
-                            <!-- 98% -->
-                        </li>
+                    <div id="patientProfiling">
+                        <p>Patient profiling and information input done. Finding your best match now...</p>
+                        <!-- # Need to show this after some time with some confidence score -->
+                        <div id="doctorMatch">
+                            <ul class="doctor-list" id="doctorList">
+                                <li class="doctor-item">
+                                    <img src="{{ url_for('static', filename='images/elisa.jpg') }}" alt="Dr. Elisa R. Port, MD">
+                                    <div class="doctor-details">
+                                        <a href="https://www.example.com/dr_elisa_port" class="doctor-name" target="_blank">Dr. Elisa R. Port, MD</a>
+                                        <p class="confidence-score">Confidence Score: <span>98%</span></p>
+                                    </div>
+                                </li>
                         
+                                <li class="doctor-item">
+                                    <img src="{{ url_for('static', filename='images/eleni-andreopoulou.png') }}" alt="Dr. Eleni Andreopoulou, MD">
+                                    <div class="doctor-details">
+                                        <a href="https://www.example.com/dr_eleni_andreopoulou" class="doctor-name" target="_blank">Dr. Eleni Andreopoulou, MD</a>
+                                        <p class="confidence-score">Confidence Score: <span>83%</span></p>
+                                    </div>
+                                </li>
                         
-                        
-                            <img src="{{ url_for('static', filename='images/eleni-andreopoulou.png') }}" alt="Dr. Eleni Andreopoulou, MD" style="width:50px;height:50px;border-radius:50%;">
-                            <a href="https://www.example.com/dr_eleni_andreopoulou" target="_blank">Dr. Eleni Andreopoulou, MD</a>
-                            <!-- 83% -->
-                        </li>
-                        
-                        <li>
-                            <img src="{{ url_for('static', filename='images/ting-bao-md-new-york-ny.jpg') }}" alt="Dr. Ting Bao, MD, MS" style="width:50px;height:50px;border-radius:50%;">
-                            <a href="https://www.example.com/dr_ting_bao" target="_blank">Dr. Ting Bao, MD, MS</a>
-                            <!-- 67% -->
-                        </li>
-                        
-                    </ul>
-                    
-                    
-    
-                    <!-- Additional Questions -->
-                    <div class="form-group">
-                        <label for="automated_appointment">Would you like to get an automated appointment?</label>
-                        <input type="radio" id="automated_appointment_yes" name="automated_appointment" value="yes"> Yes
-                        <input type="radio" id="automated_appointment_no" name="automated_appointment" value="no"> No
+                                <li class="doctor-item">
+                                    <img src="{{ url_for('static', filename='images/ting-bao-md-new-york-ny.jpg') }}" alt="Dr. Ting Bao, MD, MS">
+                                    <div class="doctor-details">
+                                        <a href="https://www.example.com/dr_ting_bao" class="doctor-name" target="_blank">Dr. Ting Bao, MD, MS</a>
+                                        <p class="confidence-score">Confidence Score: <span>67%</span></p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- Additional Questions -->
+                            <div class="form-group">
+                                <label for="automated_appointment">Would you like to get an automated appointment?</label>
+                                <input type="radio" id="automated_appointment_yes" name="automated_appointment" value="yes"> Yes
+                                <input type="radio" id="automated_appointment_no" name="automated_appointment" value="no"> No
+                            </div>
+            
+                            <div class="form-group">
+                                <label for="medical_transportation">Do you need medical transportation?</label>
+                                <input type="radio" id="medical_transportation_yes" name="medical_transportation" value="yes"> Yes
+                                <input type="radio" id="medical_transportation_no" name="medical_transportation" value="no"> No
+                            </div>
+                        </div>
                     </div>
-    
-                    <div class="form-group">
-                        <label for="medical_transportation">Do you need medical transportation?</label>
-                        <input type="radio" id="medical_transportation_yes" name="medical_transportation" value="yes"> Yes
-                        <input type="radio" id="medical_transportation_no" name="medical_transportation" value="no"> No
-                    </div>
-    
                 </div>
             </div>
     
@@ -289,48 +298,21 @@
         </form>
     </div>
 
-
-
-
-
-
-    
    <!-- Questionaire form-->
  
 
     <!-- Script section -->
     <script>
         // JavaScript for handling consent text update
-        document.getElementById('name').addEventListener('input', function() {
-            var name = document.getElementById('name').value;
-            var consentText = document.getElementById('consent-text');
-            if (name) {
-                consentText.textContent = 'By clicking "Yes," I, ' + name + ', give my informed consent to the telemedicine consultation.';
-            } else {
-                consentText.textContent = 'By clicking "Yes," I, [Your Name], give my informed consent to the telemedicine consultation.';
-            }
-        });
-    </script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
-</html>
-
-
-   <!-- Questionaire form-->
- 
-
-    <!-- Script section -->
-    <script>
-        // JavaScript for handling consent text update
-        document.getElementById('name').addEventListener('input', function() {
-            var name = document.getElementById('name').value;
-            var consentText = document.getElementById('consent-text');
-            if (name) {
-                consentText.textContent = 'By clicking "Yes," I, ' + name + ', give my informed consent to the telemedicine consultation.';
-            } else {
-                consentText.textContent = 'By clicking "Yes," I, [Your Name], give my informed consent to the telemedicine consultation.';
-            }
-        });
+        // document.getElementById('name').addEventListener('input', function() {
+        //     var name = document.getElementById('name').value;
+        //     var consentText = document.getElementById('consent-text');
+        //     if (name) {
+        //         consentText.textContent = 'By clicking "Yes," I, ' + name + ', give my informed consent to the telemedicine consultation.';
+        //     } else {
+        //         consentText.textContent = 'By clicking "Yes," I, [Your Name], give my informed consent to the telemedicine consultation.';
+        //     }
+        // });
     </script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>

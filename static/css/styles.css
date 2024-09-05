@@ -260,6 +260,47 @@ input[type="submit"]:hover {
     margin-bottom: 10px;
 }
 
+.doctor-list {
+    list-style-type: none;
+    padding: 0;
+}
+.doctor-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.doctor-item img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+}
+.doctor-details {
+    flex-grow: 1;
+}
+.doctor-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #2a52be;
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+.doctor-name:hover {
+    text-decoration: underline;
+}
+.confidence-score {
+    font-size: 0.9em;
+    color: #555;
+}
+.confidence-score span {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
 .btn-primary {
     display: inline-block;
     padding: 10px 20px;

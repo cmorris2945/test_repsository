@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Hide all sections initially except for the first question
-    const sections = ['help_options', 'second_opinion', 'started_treatment', 'additional_info', 'gender_selection', 'ehr_sync', 'final_questions'];
+    const sections = ['help_options', 'second_opinion', 'started_treatment', 'additional_info', 'gender_selection', 'ehr_sync', 'ehr_sync_record', 'final_questions', 'patientProfiling', 'doctorMatch'];
     sections.forEach(section => {
         document.getElementById(section).style.display = 'none';
     });
@@ -59,12 +59,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('gender').addEventListener('change', function() {
         showNextSection('ehr_sync');
+        setTimeout(function () {
+            document.querySelector("#ehr_sync p").innerHTML = "Data retrieved. Please verify the information below.";
+            showNextSection('ehr_sync_record')
+        }, 1000);  // 1000 milliseconds = 1 seconds
     });
 
     document.querySelectorAll('input[name="confirm_info"]').forEach(function(radio) {
         radio.addEventListener('change', function() {
             showNextSection('final_questions');
         });
+    });
+
+    document.getElementById('doctor_preferences').addEventListener('change', function() {
+        showNextSection('patientProfiling');
+        setTimeout(function () {
+            document.querySelector("#patientProfiling p").innerHTML = "Matching done. Please select the best doctor available.";
+            showNextSection('doctorMatch')
+        }, 1000);  // 1000 milliseconds = 1 seconds
     });
 
     // Function to show the next section
