@@ -26,6 +26,7 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 import time
+import os
 
 # Base URL for scraping
 base_url = "https://faculty.mdanderson.org/search-results.html?searchType=faculty&page={}"
@@ -71,13 +72,13 @@ def save_to_csv(data, file_name, mode='w'):
         if mode == 'w':  # Write header only for the first time
             writer.writerow(['Name', 'Title', 'Department', 'Division', 'Profile Link'])
         writer.writerows(data)
-    print(f"Data saved to {file_name}")
+    print(f"Data saved to {os.path.abspath(file_name)}")
 
 
 # Main scraping function
 def scrape_all_pages():
     all_doctors = []
-    total_pages = 2  # Total number of pages to scrape
+    total_pages = 5  # Update this based on the number of pages on the website
     
     for page in range(1, total_pages + 1):
         print(f"Scraping page {page}...")
@@ -90,28 +91,3 @@ def scrape_all_pages():
 
 # Run the scraping
 scrape_all_pages()
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
